@@ -1,0 +1,20 @@
+
+html,body{
+    @include mq('xl'){ font-size: 10px; }
+    @include mq('pc'){ font-size:  8px; }
+    @include mq('tb'){ font-size:  6px; }
+    @include mq('xx'){ font-size: 12px; }
+    @include mq('sp'){ font-size: 10px; }
+    @include mq('xs'){ font-size:  9px; }
+}
+@mixin mqFontSize( $lSize, $sSize ){
+    @include mq('LARGE'){ font-size: $lSize;}
+    @include mq('SHORT'){ font-size: $sSize;}
+}
+h1   { @include mqFontSize( 2.8rem, 2.8rem );}
+h2   { @include mqFontSize( 4.2rem, 4.2rem );}
+h3   { @include mqFontSize( 2.0rem, 2.0rem );}
+h4   { @include mqFontSize( 1.6rem, 1.6rem );}
+p,a  { @include mqFontSize( 1.4rem, 1.4rem );}
+span { @include mqFontSize( 1.0em , 1.0em  );}
+h1,h2,h3,h4,p,a,span {line-height: 1em;}

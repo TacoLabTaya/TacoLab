@@ -9,4 +9,17 @@ export default defineNuxtConfig({
         script: [{ src: 'https://cdn.tailwindcss.com' }],
       },
     },
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                  additionalData: `
+                    @import "@/assets/styles/_base.scss";
+                    @import "@/assets/styles/_mediaquery.scss";
+                    @import "@/assets/styles/_font.scss";
+                  `
+                },
+            },
+        },
+    },
 })
