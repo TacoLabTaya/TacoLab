@@ -1,23 +1,18 @@
 <template>
-  <div class="mGlobal">
-    mGlobal
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
-  </div>
+  <MColor :blok="blok.color[0]">
+    <mFont :blok="blok.font[0]">
+      <MAppear :blok="blok.appear[0]">
+        <StoryblokComponent v-for="blok in blok.header" :key="blok._uid" :blok="blok" />
+        <slot />
+        <StoryblokComponent v-for="blok in blok.footer" :key="blok._uid" :blok="blok" />
+      </MAppear>
+    </mFont>
+  </MColor>
 </template>
 
 <script setup>
 defineProps({ blok: Object });
 </script>
 
-<style lang="scss" >
-.mGlobal{
-  display:flex;
-}
+<style lang="scss" scoped >
 </style>

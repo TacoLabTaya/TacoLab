@@ -1,14 +1,11 @@
 <template>
   <div class="bHeader">
-    Head
-    <!--
-    <div>
+    <div class="bHeader-left">
         <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
     </div>
-    <div  >
+    <div  class="bHeader-right">
         <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
     </div>
-    -->
   </div>
 </template>
 
@@ -16,8 +13,9 @@
 defineProps({ blok: Object });
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .bHeader{
   display:flex;
+  justify-content: space-between;
 }
 </style>

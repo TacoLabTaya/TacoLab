@@ -1,14 +1,6 @@
 <template>
   <div class="mFont">
-    mFont
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
+    <slot />
   </div>
 </template>
 
@@ -18,6 +10,5 @@ defineProps({ blok: Object });
 
 <style lang="scss" >
 .mFont{
-  display:flex;
 }
 </style>

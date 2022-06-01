@@ -1,14 +1,6 @@
 <template>
-  <div class="mAppear">
-    mAppear
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
+  <div class="mColor">
+    <slot />
   </div>
 </template>
 
@@ -17,7 +9,7 @@ defineProps({ blok: Object });
 </script>
 
 <style lang="scss" >
-.mAppear{
+.mColor{
   display:flex;
 }
 </style>

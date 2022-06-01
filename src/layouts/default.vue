@@ -1,13 +1,8 @@
 <template>
-  <div>
-    <div v-for="blok in global.content.header" :key="blok._uid" >
-        <StoryblokComponent :blok="blok" />
-    </div>
+  <StoryblokComponent :blok="global.content">
     <slot />
-    Footer
-  </div>
+  </StoryblokComponent>
 </template>
 <script setup>
 const global = await useStoryblok('global', { version: 'published' });
-//console.log(global.content.Header[0]);
 </script>   
