@@ -1,23 +1,15 @@
 <template>
-  <div class="eTitle">
-    eTitle
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
-  </div>
+  <picture class="eImage">
+    <source v-if="blok.sourcePC.id" :srcset="blok.sourcePC.filename" media="(min-width: 769px)" />
+    <img :src="blok.source.filename" />
+  </picture>
 </template>
 
 <script setup>
 defineProps({ blok: Object });
 </script>
 
-<style lang="scss" >
-.eTitle{
-  display:flex;
+<style lang="scss" scoped>
+.eImage{
 }
 </style>

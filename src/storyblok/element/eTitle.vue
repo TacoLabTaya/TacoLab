@@ -1,23 +1,14 @@
 <template>
-  <div class="eTitle">
-    eTitle
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
-  </div>
+  <h2 class="eTitle">
+    {{blok.text}}
+  </h2>
 </template>
 
 <script setup>
 defineProps({ blok: Object });
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .eTitle{
-  display:flex;
 }
 </style>

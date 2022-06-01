@@ -10,6 +10,5 @@ defineProps({ blok: Object });
 
 <style lang="scss" >
 .mColor{
-  display:flex;
 }
 </style>
