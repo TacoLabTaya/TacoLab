@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="blok in global.content.Header" :key="blok._uid" >
+    <div v-for="blok in global.content.header" :key="blok._uid" >
         <StoryblokComponent :blok="blok" />
     </div>
     <slot />

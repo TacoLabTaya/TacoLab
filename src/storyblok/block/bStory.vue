@@ -1,11 +1,14 @@
 <template>
-  <div class="bHeader">
+  <div class="bStory">
+    bStory
+    <!--
     <div>
         <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
     </div>
     <div  >
-      <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
+        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
     </div>
+    -->
   </div>
 </template>
 
@@ -14,7 +17,7 @@ defineProps({ blok: Object });
 </script>
 
 <style lang="scss" >
-.bHeader{
+.bStory{
   display:flex;
 }
 </style>
