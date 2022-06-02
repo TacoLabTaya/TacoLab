@@ -6,11 +6,19 @@
 </template>
 
 <script setup>
-defineProps({ blok: Object });
+  const prop = defineProps({ blok: Object });
+  const height = computed( () => {
+    var ret = "auto";
+    if( prop.blok.vheight !== 0 ){
+      ret = `${prop.blok.vheight}vh`;
+    }
+    return ret;
+  } );
 </script>
 
 <style lang="scss" >
 .bSheet{
+  height:v-bind(height);
   //display:flex;
 }
 </style>

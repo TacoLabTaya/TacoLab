@@ -1,6 +1,6 @@
 <template>
-  <div class="eTitle">
-    eTitle
+  <div class="eText">
+    eText
     <!--
     <div>
         <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
@@ -13,11 +13,11 @@
 </template>
 
 <script setup>
-defineProps({ blok: Object });
+  defineProps({ blok: Object });
 </script>
 
 <style lang="scss" >
-.eTitle{
+.eText{
   display:flex;
 }
 </style>
