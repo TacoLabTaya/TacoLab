@@ -1,14 +1,6 @@
 <template>
   <div class="bPoint3">
-    bPoint3
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
+    <StoryblokComponent v-for="blok in blok.points" :key="blok._uid" :blok="blok" />
   </div>
 </template>
 

@@ -1,14 +1,7 @@
 <template>
   <div class="bSheet">
-    bSheet
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
+    <StoryblokComponent v-for="blok in blok.contents" :key="blok._uid" :blok="blok" />
+    <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" />
   </div>
 </template>
 
@@ -18,6 +11,6 @@ defineProps({ blok: Object });
 
 <style lang="scss" >
 .bSheet{
-  display:flex;
+  //display:flex;
 }
 </style>

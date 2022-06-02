@@ -1,14 +1,7 @@
 <template>
-  <div class="eTitle">
-    eTitle
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
+  <div class="eCard">
+    <h4 class="eCard-title">{{blok.title}}</h4>
+    <p  class="eCard-text" >{{blok.text }}</p>
   </div>
 </template>
 
@@ -17,7 +10,8 @@ defineProps({ blok: Object });
 </script>
 
 <style lang="scss" >
-.eTitle{
-  display:flex;
+.eCard{
+  .eCard-title{}
+  .eCard-text {}
 }
 </style>

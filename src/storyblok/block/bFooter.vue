@@ -1,14 +1,6 @@
 <template>
   <div class="bFooter">
-    bFooter
-    <!--
-    <div>
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" />
-    </div>
-    <div  >
-        <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
-    </div>
-    -->
+    <span>{{blok.copyright}}</span>
   </div>
 </template>
 
