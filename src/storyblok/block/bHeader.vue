@@ -1,7 +1,7 @@
 <template>
   <div class="bHeader">
     <div class="bHeader-left">
-        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok"  class="bHeader-logo"/>
+        <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" class="bHeader-logo"/>
     </div>
     <div  class="bHeader-right">
         <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
