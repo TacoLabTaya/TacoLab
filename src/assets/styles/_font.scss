@@ -11,10 +11,10 @@ html,body{
     @include mq('LARGE'){ font-size: $lSize;}
     @include mq('SHORT'){ font-size: $sSize;}
 }
-h1   { @include mqFontSize( 6.0rem, 6.0rem );}
-h2   { @include mqFontSize( 4.2rem, 4.2rem );}
-h3   { @include mqFontSize( 2.0rem, 2.0rem );}
-h4   { @include mqFontSize( 1.6rem, 1.6rem );}
-p,a  { @include mqFontSize( 1.4rem, 1.4rem );}
+h1   { @include mqFontSize( 4.0em, 4.0em );}
+h2   { @include mqFontSize( 3.0em, 3.0em );}
+h3   { @include mqFontSize( 2.0em, 2.0em );}
+h4   { @include mqFontSize( 1.6em, 1.6em );}
+p,a  { @include mqFontSize( 1.4em, 1.4em );}
 span { @include mqFontSize( 1.0em , 1.0em  );}
 h1,h2,h3,h4,p,a,span {line-height: 1em;}

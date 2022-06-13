@@ -1,13 +1,11 @@
 <template>
-  <MColor :blok="blok.color[0]">
-    <mFont :blok="blok.font[0]">
-      <MAppear :blok="blok.appear[0]">
-        <StoryblokComponent v-for="blok in blok.header" :key="blok._uid" :blok="blok" />
-        <slot></slot>
-        <StoryblokComponent v-for="blok in blok.footer" :key="blok._uid" :blok="blok" />
-      </MAppear>
-    </mFont>
-  </MColor>
+  <mColors :blok="blok.color">
+    <mFontJp p :blok="blok.font">
+      <StoryblokComponent v-for="blok in blok.header" :key="blok._uid" :blok="blok" />
+      <slot></slot>
+      <StoryblokComponent v-for="blok in blok.footer" :key="blok._uid" :blok="blok" />
+    </mFontJp>
+  </mColors>
 </template>
 
 <script setup>

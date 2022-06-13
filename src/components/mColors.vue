@@ -1,5 +1,5 @@
 <template>
-  <div class="mColor">
+  <div class="mColors">
     <slot />
   </div>
 </template>
@@ -9,6 +9,6 @@ defineProps({ blok: Object });
 </script>
 
 <style lang="scss" >
-.mColor{
+.mColors{
 }
 </style>

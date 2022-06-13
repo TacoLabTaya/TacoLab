@@ -12,7 +12,6 @@ onMounted(async () => {
 
 <template>
   <div>
-    Debug
-    <StoryblokComponent v-if="story" :blok="story" />
+    <StoryblokComponent v-if="story" :blok="story.content" />
   </div>
 </template>

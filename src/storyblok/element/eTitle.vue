@@ -27,12 +27,19 @@
   const words = computed( () => {
     return prop.blok.text.split('\n');
   } );
+  const emsize = computed( () => {
+    if(prop.blok.emsize){
+      return `${prop.blok.emsize.value}em`;
+    }
+    return "1em";
+  } );
 </script>
 
 <style lang="scss" scoped>
   .eTitle{
     .eTitle-word{
       display:inline-block;
+      font-size:v-bind(emsize);
     }
     &.eTitle-left   {text-align:left  }
     &.eTitle-right  {text-align:right }

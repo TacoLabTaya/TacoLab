@@ -1,5 +1,5 @@
 <template>
-  <div class="eBackground">
+  <div v-if="blok.image.filename!=''" class="eBackground">
     background file[{{blok.image.filename}}]
   </div>
 </template>
