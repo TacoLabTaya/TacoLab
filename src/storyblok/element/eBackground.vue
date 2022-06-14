@@ -1,14 +1,18 @@
 <template>
-  <div v-if="blok.image.filename!=''" class="eBackground">
-    background file[{{blok.image.filename}}]
-  </div>
+  <div 
+    v-if="blok.style!=''" 
+    :class="['eBackground',`eBackground-${blok.style}`]"
+  />
 </template>
 
 <script setup>
-defineProps({ blok: Object });
+  const prop = defineProps({ blok: Object });
 </script>
 
 <style lang="scss" >
-.eBackground{
-}
+  .eBackground{
+    &.eBackground-texture{
+      background-color:lightgray;
+    }
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <mColors :blok="blok.color">
+  <mColors :blok="blok.color" class="mGlobal">
     <mFontJp p :blok="blok.font">
       <StoryblokComponent v-for="blok in blok.header" :key="blok._uid" :blok="blok" />
       <slot></slot>
@@ -12,5 +12,9 @@
 defineProps({ blok: Object });
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" >
+  .mGlobal{
+    background-color:var(--c-base);
+    color:var(--c-main);
+  }
 </style>
