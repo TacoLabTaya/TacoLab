@@ -2,7 +2,7 @@ const Fieldtype = {
   mixins: [window.Storyblok.plugin],
   template: `
 <div>
-  <p>ModeStyle</p>
+  <span>ModeStyle</span>
   <select name="mode" v-model="model.mode" size="1" class="uk-width-3-4">
     <option v-for="md in mode" :value="md">{{md}}</option>
   </select>
@@ -11,7 +11,7 @@ const Fieldtype = {
   </select>
   <div class="uk-grid">
     <input type="range" min="1" max="10" step="1" v-model="model.size" />
-    <label class="uk-form-label uk-width-1-4">{{model.size}}point</label>
+    <label class="uk-form-label uk-width-1-4">{{model.size}}em</label>
   </div>
   <select name="blend" v-model="model.blend" size="1" class="uk-width-3-4">
     <option v-for="md in blend" :value="md">{{md}}</option>
@@ -32,11 +32,11 @@ const Fieldtype = {
     return {
       mode:['heroimage','texture','flame','glassgrad','stripe'],
       style:{
-        heroimage:['grad-base','grad-main','some-dots'],
+        heroimage:['gradbase','gradmain','somedots'],
         texture  :['zarazara','tsurutsuru','dekoboko'],
         flame    :['glow', 'metal'],
         glassgrad:['frosted', 'jitter'],
-        stripe   :['stripe'],
+        stripe   :['stripe1'],
       },
       blend:['normal','burn'],
     }

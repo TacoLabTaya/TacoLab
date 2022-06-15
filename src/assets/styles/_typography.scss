@@ -1,0 +1,175 @@
+
+  @mixin retrostecker($cb:#FFFFFF) {
+    position: relative;
+    z-index: 0;
+    &::before,
+    &::after {
+      position: absolute;
+      content: attr(data-text);
+      color: $cb;
+      top: 0;
+      left: 0;
+      right:0;
+      bottom:0;
+    }
+    &::before {
+      z-index: -1;
+      -webkit-text-stroke: 0.15em $cb;
+    }
+  
+    &::after {
+      text-shadow: 0.07em 0.08em 0.05em rgba(0, 0, 0, 0.75),
+        -0.07em -0.05em 0.05em rgba(0, 0, 0, 0.75);
+      z-index: -2;
+    }
+  }
+  @mixin typo-retro-01 {
+    font-family: var(--font);
+    background-repeat: repeat;
+    color: #fcedd8;
+    text-shadow: 2px 1px 0px #eb452b, 4px 2px 0px #efa032, 6px 3px 0px #46b59b,
+      8px 4px 0px #017e7f, 10px 5px 0px #052939;
+  }
+  @mixin typo-retro-02($c1,$c2,$c3) {
+    font-family: var(--font);
+    background-repeat: repeat;
+    background: linear-gradient(60deg,transparent 35%,#ffffff 49.95%,#ffffff 50.15%,transparent 65%),
+      linear-gradient(to right,rgb($c1),rgb($c2),rgb($c3));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.02em rgba(0, 0, 0, 0.6);
+    @include retrostecker();
+  }
+  @mixin typo-retro-03 {
+    font-family: var(--font);
+    background-repeat: repeat;
+    position: relative;
+    color: rgb(var(--color2));
+    cursor: pointer;
+  
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      color: transparent;
+      background-clip: text;
+      top: 0px;
+      left: 0px;
+      transition: 1s;
+    }
+    &::before {
+      background-image:
+        repeating-linear-gradient(45deg,transparent 0,transparent 0.05em,rgb(var(--color1)) 0.05em,rgb(var(--color1)) 0.1em);
+      z-index: -1;
+    }
+    &::after {
+      background-image: 
+        repeating-linear-gradient(135deg,transparent 0,transparent 0.05em,rgb(var(--color1)) 0.05em,rgb(var(--color1)) 0.1em);
+    }
+  
+    &:hover {
+      &::before {top: 0.1em;left: 0.1em;}
+      &::after {top: -0.1em;left: -0.1em;}
+    }
+  }
+  @mixin typo-gradation-01 {
+    font-family: var(--font);
+    background-repeat: repeat;
+    background-image: 
+      linear-gradient(to right,rgb(var(--color2)),rgb(var(--color3)));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 500%;
+    animation: bgmove 2s ease 0s infinite both alternate;
+  }
+  @mixin typo-gradation-02 {
+    font-family: var(--font);
+    background-repeat: repeat;
+    background-image: 
+      linear-gradient(to right,rgb(var(--color2)) 40%,white 65%,rgb(var(--color2)) 80%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 500% 100%;
+    animation: bgwaitmove 3s ease 0s infinite both normal;
+  }
+  @keyframes bgmove {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 100%;
+    }
+  }
+  @keyframes bgwaitmove {
+    0%,
+    80% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: 0%;
+    }
+  }
+  @mixin typo-pop-01 {
+    font-family: var(--font);
+    background-repeat: repeat;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 0.01em;
+    -webkit-text-stroke-color: rgb(var(--color1));
+    text-shadow: 0.05em 0.05em rgb(var(--color3)), 0.1em 0.1em rgb(var(--color2));
+  }
+  
+  @mixin typo-monotone-01 {
+    font-family: var(--font);
+    background-repeat: repeat;
+    color: rgb(var(--color2));
+    background-color: rgb(var(--color1));
+    position: relative;
+    &::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgb(var(--color2));
+      color: rgb(var(--color1));
+      clip-path: inset(-1% -1% 50% -1%);
+    }
+  }
+  @mixin typo-blight-01 {
+    font-family: var(--font);
+    background-repeat: repeat;
+    color: rgb(var(--color1));
+    animation: neon 3s infinite;
+  }
+  
+  @keyframes neon {
+    0%, 100% {
+      text-shadow: -1px -1px 1px rgba(var(--color1),0.6),
+        -1px 1px 1px rgba(var(--color1),0.6),
+        1px -1px 1px rgba(var(--color1),0.6),
+        1px 1px 1px rgba(var(--color1),0.6), 
+        0 0 0.01em rgba(var(--color1),0.6),
+        0 0 0.02em rgba(var(--color1),0.6),
+        0 0 0.03em rgba(var(--color1),0.6),
+        0 0 0.04em rgba(var(--color3),0.6),
+        0 0 0.05em rgba(var(--color3),0.6),
+        0 0 0.1em rgba(var(--color3),0.6),
+        0 0 0.2em rgba(var(--color3),0.6),
+        0 0 0.3em rgba(var(--color3),0.6),
+        0 0 0.4em rgba(var(--color3),0.6);
+    }
+    50% {
+      text-shadow: -1px -1px 1px rgba(var(--color1),1),
+        -1px 1px 1px rgba(var(--color1),1),
+        1px -1px 1px rgba(var(--color1),1),
+        1px 1px 1px rgba(var(--color1),1), 
+        0 0 0.02em rgba(var(--color1),1),
+        0 0 0.03em rgba(var(--color1),1),
+        0 0 0.04em rgba(var(--color1),1),
+        0 0 0.05em rgba(var(--color3),1),
+        0 0 0.1em rgba(var(--color3),1),
+        0 0 0.2em rgba(var(--color3),1),
+        0 0 0.3em rgba(var(--color3),1),
+        0 0 0.4em rgba(var(--color3),1),
+        0 0 0.5em rgba(var(--color3),1);
+    }
+  }

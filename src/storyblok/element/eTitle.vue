@@ -1,6 +1,19 @@
 <template>
-  <component :is="headelem" :class="['eTitle', `eTitle-${blok.aligin}`, {'eTitle-wrap': blok.wrap}]" >
-    <span v-for="word in words" :key="word" class="eTitle-word">
+  <component 
+    :is="headelem" 
+    :class="[
+      'eTitle',
+      `eTitle-${blok.aligin}`,
+      {'eTitle-wrap': blok.wrap},
+      `eTitle-typo-${blok.typo}`
+    ]"
+  >
+    <span 
+      v-for="word in words"
+      :data-text="word"
+      :key="word"
+      :class="['eTitle-word']"
+    >
       {{word}}
     </span>
   </component>
@@ -36,14 +49,42 @@
 </script>
 
 <style lang="scss" scoped>
+
+@import "@/assets/styles/_typography.scss";
+
   .eTitle{
     .eTitle-word{
       display:inline-block;
       font-size:v-bind(emsize);
     }
+    
     &.eTitle-left   {text-align:left  }
     &.eTitle-right  {text-align:right }
     &.eTitle-center {text-align:center}
     &.eTitle-wrap   {display:flex;flex-direction:column;}
+
+
+    &.eTitle-typo-none{
+      .eTitle-word{}
+    }
+    &.eTitle-typo-grad{
+      .eTitle-word{}
+    }
+    &.eTitle-typo-neon{
+      .eTitle-word{}
+    }
+    &.eTitle-typo-pop{
+      .eTitle-word{}
+    }
+    &.eTitle-typo-stecker{
+      .eTitle-word{
+        @include typo-retro-02(var(--c-main),var(--c-base),var(--c-base));
+      }
+    }
+    &.eTitle-typo-layered{
+      .eTitle-word{
+         @include retrostecker(rgb(var(--c-base)));
+      }
+    }
   }
 </style>

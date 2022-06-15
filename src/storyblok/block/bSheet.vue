@@ -50,7 +50,7 @@
   position:relative;
   z-index: 0;
   .bSheet-contents{
-    position:static;
+    //position:static;
     z-index:1;
   }
   .bSheet-background{
