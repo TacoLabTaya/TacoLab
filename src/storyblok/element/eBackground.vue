@@ -34,7 +34,9 @@
     }
     &.eBack-flame{
       &.eBack-glow{}
-      &.eBack-metal{}
+      &.eBack-metal{
+        @include flame-metal-01((var(--c-main-l)),(var(--c-main-d)),(var(--c-base-l)),(var(--c-base-d)));
+      }
     }
     &.eBack-glassgrad{
       &.eBack-frosted{}
