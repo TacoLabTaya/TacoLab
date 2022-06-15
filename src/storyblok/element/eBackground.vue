@@ -27,7 +27,7 @@
     &.eBack-texture{
       background-color:lightgray;
       &.eBack-zarazara{
-        @include texture-3dbox-01((var(--c-main)),(var(--c-base)),(var(--c-base)),1);
+        @include texture-3dbox-01((var(--c-base-d)),(var(--c-base)),(var(--c-base-l)),1);
       }
       &.eBack-tsurutsuru{}
       &.eBack-dekoboko{}

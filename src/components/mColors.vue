@@ -70,46 +70,38 @@
     return hsl;
   };
   const hsl2String = (hsl) => {
-    return `${hsl["h"].toFixed(0)},${hsl["s"].toFixed(0)}%,${hsl["l"].toFixed(0)}%`;
+    return `${hsl.h.toFixed(0)},${hsl.s.toFixed(0)}%,${hsl.l.toFixed(0)}%`;
   };
-  const cBase = () => {
-    const hsl = hx2hsl(prop.blok.base);
-    return hsl2String(hsl);
+  const inRange = (val,min,max) => {
+    if (val<min) { return min; }
+    if (val>max) { return max; }
+    return val;
   };
-  const cMain = () => {
-    const hsl = hx2hsl(prop.blok.main);
-    return hsl2String(hsl);
-  };
-  const cAcce = () => {
-    const hsl = hx2hsl(prop.blok.acce);
-    return hsl2String(hsl);
+  const hx2hls = (hx,dept) => {
+    /* dept: 0 - 1 / 0.1 */
+    const hsl = hx2hsl(hx);
+    const ret = {
+      h: hsl.h,
+      s: inRange(hsl.s + (hsl.s * dept), 0, 100),
+      l: inRange(hsl.l + (hsl.l * dept), 0, 100),
+    };
+    return hsl2String(ret);
   };
   const styleset = computed( () => {
     const style = {
-      "--c-base":`${cBase()}`,
-      "--c-main":`${cMain()}`,
-      "--c-acce":`${cAcce()}`,
+      "--c-base"  :`${hx2hls(prop.blok.base, 0 * prop.blok.dept)}`,
+      "--c-base-l":`${hx2hls(prop.blok.base, 1 * prop.blok.dept)}`,
+      "--c-base-d":`${hx2hls(prop.blok.base,-1 * prop.blok.dept)}`,
+      "--c-main"  :`${hx2hls(prop.blok.main, 0 * prop.blok.dept)}`,
+      "--c-main-l":`${hx2hls(prop.blok.main, 1 * prop.blok.dept)}`,
+      "--c-main-d":`${hx2hls(prop.blok.main,-1 * prop.blok.dept)}`,
+      "--c-acce"  :`${hx2hls(prop.blok.acce, 0 * prop.blok.dept)}`,
+      "--c-acce-l":`${hx2hls(prop.blok.acce, 1 * prop.blok.dept)}`,
+      "--c-acce-d":`${hx2hls(prop.blok.acce,-1 * prop.blok.dept)}`,
     };
     return style;
   });
 </script>
 
 <style lang="scss">
-/*
-:root{
-    --c-base: v-bind(cBase);
-    --c-main: v-bind(cMain);
-    --c-acce: v-bind(cAcce);
-      }
-.mColor{
-  --c-base: v-bind(cBase);
-  --c-main: v-bind(cMain);
-  --c-acce: v-bind(cAcce);
-  *{
-    --c-base: v-bind(cBase);
-    --c-main: v-bind(cMain);
-    --c-acce: v-bind(cAcce);
-  }
-}
-*/
 </style>
