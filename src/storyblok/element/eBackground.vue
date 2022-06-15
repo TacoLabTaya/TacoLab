@@ -9,7 +9,7 @@
   const prop = defineProps({ blok: Object });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 /*
   --c-base: v-bind(cBase);
   --c-main: v-bind(cMain);
@@ -27,7 +27,7 @@
     &.eBack-texture{
       background-color:lightgray;
       &.eBack-zarazara{
-        @include texture-3dbox-01(var(--c-main),var(--c-base),var(--c-base),1);
+        @include texture-3dbox-01((var(--c-main)),(var(--c-base)),(var(--c-base)),1);
       }
       &.eBack-tsurutsuru{}
       &.eBack-dekoboko{}

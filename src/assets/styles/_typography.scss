@@ -1,12 +1,12 @@
 
-  @mixin retrostecker($cb:#FFFFFF) {
+  @mixin retrostecker($cb:(0,100%,100%)) {
     position: relative;
     z-index: 0;
     &::before,
     &::after {
       position: absolute;
       content: attr(data-text);
-      color: $cb;
+      color: hsl($cb);
       top: 0;
       left: 0;
       right:0;
@@ -14,7 +14,7 @@
     }
     &::before {
       z-index: -1;
-      -webkit-text-stroke: 0.15em $cb;
+      -webkit-text-stroke: 0.15em hsl($cb);
     }
   
     &::after {
@@ -34,11 +34,11 @@
     font-family: var(--font);
     background-repeat: repeat;
     background: linear-gradient(60deg,transparent 35%,#ffffff 49.95%,#ffffff 50.15%,transparent 65%),
-      linear-gradient(to right,rgb($c1),rgb($c2),rgb($c3));
+      linear-gradient(to right,hsl($c1),hsl($c2),hsl($c3));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 0.02em rgba(0, 0, 0, 0.6);
-    @include retrostecker();
+    @include retrostecker($c1);
   }
   @mixin typo-retro-03 {
     font-family: var(--font);

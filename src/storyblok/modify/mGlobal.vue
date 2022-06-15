@@ -14,7 +14,8 @@ defineProps({ blok: Object });
 
 <style lang="scss" >
   .mGlobal{
-    background-color:rgb(var(--c-base));
-    color:rgb(var(--c-main));
+    background-color:hsl(var(--c-base));
+    color:hsl(var(--c-main));
   }
+
 </style>

@@ -78,12 +78,12 @@
     }
     &.eTitle-typo-stecker{
       .eTitle-word{
-        @include typo-retro-02(var(--c-main),var(--c-base),var(--c-base));
+        @include typo-retro-02((var(--c-main)),(var(--c-base)),(var(--c-base)));
       }
     }
     &.eTitle-typo-layered{
       .eTitle-word{
-         @include retrostecker(rgb(var(--c-base)));
+         @include retrostecker((var(--c-base)));
       }
     }
   }
