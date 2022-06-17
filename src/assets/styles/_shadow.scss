@@ -1,0 +1,14 @@
+
+
+  
+  
+  @mixin shadow-rightbottom($dept,$color) {
+    filter: drop-shadow($dept*1px $dept*1px $dept*1px $color)
+  }
+.mShadow-d0{ /*@include shadow-rightbottom(0,hsl(var(--c-main-d)))*/ }
+.mShadow-d1{ @include shadow-rightbottom(2,hsl(var(--c-main-d))) }
+.mShadow-d2{ @include shadow-rightbottom(4,hsl(var(--c-main-d))) }
+.mShadow-d3{ @include shadow-rightbottom(6,hsl(var(--c-main-d))) }
+.mShadow-d4{ @include shadow-rightbottom(8,hsl(var(--c-main-d))) }
+  
+  

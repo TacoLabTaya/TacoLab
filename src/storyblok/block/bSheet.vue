@@ -1,5 +1,5 @@
 <template>
-  <div class="bSheet">
+  <div :class="['bSheet',`mShadow-d${blok.shadow}`]">
     <StoryblokComponent v-for="blok in blok.contents" :key="blok._uid" :blok="blok" class="bSheet-contents"/>
     <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
   </div>
@@ -36,6 +36,7 @@
 </script>
 
 <style lang="scss" scoped >
+@import "@/assets/styles/_shadow.scss";
 .bSheet{
   height:v-bind(height);
   @include mq('SHORT'){ 

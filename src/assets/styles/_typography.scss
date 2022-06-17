@@ -1,44 +1,30 @@
 
-  @mixin retrostecker($cb:(0,100%,100%)) {
+  @mixin retrostecker($cDeco:(0,100%,100%), $cText:(0,0%,0%), $bSize:9 ){
     position: relative;
     z-index: 0;
-    &::before,
-    &::after {
+    color: hsl($cText);
+    &::after{
       position: absolute;
       content: attr(data-text);
-      color: hsl($cb);
+      color: hsl($cDeco);
       top: 0;
       left: 0;
       right:0;
       bottom:0;
-    }
-    &::before {
       z-index: -1;
-      -webkit-text-stroke: 0.15em hsl($cb);
-    }
-  
-    &::after {
-      text-shadow: 0.07em 0.08em 0.05em rgba(0, 0, 0, 0.75),
-        -0.07em -0.05em 0.05em rgba(0, 0, 0, 0.75);
-      z-index: -2;
+      -webkit-text-stroke: calc($bSize*0.02em) hsl($cDeco);
     }
   }
-  @mixin typo-retro-01 {
-    font-family: var(--font);
+  @mixin typo-retro-02($cDeco,$cText,$cSub,$bSize) {
+    @include retrostecker($cDeco,$cText,$bSize);
+    //position:static;
     background-repeat: repeat;
-    color: #fcedd8;
-    text-shadow: 2px 1px 0px #eb452b, 4px 2px 0px #efa032, 6px 3px 0px #46b59b,
-      8px 4px 0px #017e7f, 10px 5px 0px #052939;
-  }
-  @mixin typo-retro-02($c1,$c2,$c3) {
-    font-family: var(--font);
-    background-repeat: repeat;
-    background: linear-gradient(60deg,transparent 35%,#ffffff 49.95%,#ffffff 50.15%,transparent 65%),
-      linear-gradient(to right,hsl($c1),hsl($c2),hsl($c3));
+    background: 
+      linear-gradient(60deg,transparent 35%,hsla($cDeco, 0.8) 49.95%,hsla($cDeco , 0.8) 50.15%,transparent 65%),
+      linear-gradient(to right,hsl($cSub),hsl($cText),hsl($cSub));
     background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 0.02em rgba(0, 0, 0, 0.6);
-    @include retrostecker($c1);
+    -webkit-text-fill-color: transparent; 
+    //-webkit-text-stroke: 0.01em hsl($cText);
   }
   @mixin typo-retro-03 {
     font-family: var(--font);
@@ -134,42 +120,41 @@
       clip-path: inset(-1% -1% 50% -1%);
     }
   }
-  @mixin typo-blight-01 {
-    font-family: var(--font);
+  @mixin typo-blight-01($c1,$c2,$c3,$t) {
     background-repeat: repeat;
-    color: rgb(var(--color1));
-    animation: neon 3s infinite;
-  }
+    color: hsl($c1);
+    animation: neon $t infinite;
   
   @keyframes neon {
     0%, 100% {
-      text-shadow: -1px -1px 1px rgba(var(--color1),0.6),
-        -1px 1px 1px rgba(var(--color1),0.6),
-        1px -1px 1px rgba(var(--color1),0.6),
-        1px 1px 1px rgba(var(--color1),0.6), 
-        0 0 0.01em rgba(var(--color1),0.6),
-        0 0 0.02em rgba(var(--color1),0.6),
-        0 0 0.03em rgba(var(--color1),0.6),
-        0 0 0.04em rgba(var(--color3),0.6),
-        0 0 0.05em rgba(var(--color3),0.6),
-        0 0 0.1em rgba(var(--color3),0.6),
-        0 0 0.2em rgba(var(--color3),0.6),
-        0 0 0.3em rgba(var(--color3),0.6),
-        0 0 0.4em rgba(var(--color3),0.6);
+      text-shadow: -1px -1px 1px hsla($c3,0.8),
+        -1px 1px 1px hsla($c3,0.8),
+        1px -1px 1px hsla($c3,0.8),
+        1px 1px 1px hsla($c3,0.8), 
+        0 0 0.01em hsla($c3,0.6),
+        0 0 0.02em hsla($c3,0.6),
+        0 0 0.03em hsla($c3,0.6),
+        0 0 0.04em hsla($c3,0.6),
+        0 0 0.05em hsla($c3,0.6),
+        0 0 0.1em hsla($c3,0.6),
+        0 0 0.2em hsla($c3,0.6),
+        0 0 0.3em hsla($c3,0.6),
+        0 0 0.4em hsla($c3,0.6);
     }
     50% {
-      text-shadow: -1px -1px 1px rgba(var(--color1),1),
-        -1px 1px 1px rgba(var(--color1),1),
-        1px -1px 1px rgba(var(--color1),1),
-        1px 1px 1px rgba(var(--color1),1), 
-        0 0 0.02em rgba(var(--color1),1),
-        0 0 0.03em rgba(var(--color1),1),
-        0 0 0.04em rgba(var(--color1),1),
-        0 0 0.05em rgba(var(--color3),1),
-        0 0 0.1em rgba(var(--color3),1),
-        0 0 0.2em rgba(var(--color3),1),
-        0 0 0.3em rgba(var(--color3),1),
-        0 0 0.4em rgba(var(--color3),1),
-        0 0 0.5em rgba(var(--color3),1);
+      text-shadow: -1px -1px 1px hsla($c3,1),
+        -1px 1px 1px hsla($c3,1),
+        1px -1px 1px hsla($c3,1),
+        1px 1px 1px hsla($c3,1), 
+        0 0 0.02em hsla($c3,1),
+        0 0 0.03em hsla($c3,1),
+        0 0 0.04em hsla($c3,1),
+        0 0 0.05em hsla($c3,1),
+        0 0 0.1em hsla($c3,1),
+        0 0 0.2em hsla($c3,1),
+        0 0 0.3em hsla($c3,1),
+        0 0 0.4em hsla($c3,1),
+        0 0 0.5em hsla($c3,1);
     }
   }
+}

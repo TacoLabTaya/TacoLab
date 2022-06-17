@@ -82,8 +82,8 @@
     const hsl = hx2hsl(hx);
     const ret = {
       h: hsl.h,
-      s: inRange(hsl.s + (hsl.s * dept), 0, 100),
-      l: inRange(hsl.l + (hsl.l * dept), 0, 100),
+      s: inRange(hsl.s + ((100-hsl.s) * dept), 0, 100),
+      l: inRange(hsl.l + ((100-hsl.l) * dept), 0, 100),
     };
     return hsl2String(ret);
   };
