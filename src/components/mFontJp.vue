@@ -1,14 +1,21 @@
 <template>
-  <div v-if="blok.ison" class="mFontJp">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link :href='`https://fonts.googleapis.com/css2?family=${blok.family}&display=swap`' rel="stylesheet">
+  <component 
+    :is="headelem" 
+    :class="[
+      { 'mFontJp'        : blok.ison },
+      { 'mFontJp--family': blok.family != ''  },
+      { 'mFontJp--weight': blok.weight != 400 },
+      { 'mFontJp--emsize': blok.emsize != 1   }
+    ]">
+    <link v-if="blok.family!=''" rel="preconnect" href="https://fonts.googleapis.com">
+    <link v-if="blok.family!=''" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link v-if="blok.family !=''" :href='`https://fonts.googleapis.com/css2?family=${blok.family}&display=swap`' rel="stylesheet">
     <slot />
-  </div>
+  </component>
 </template>
 
 <script setup>
-  const prop = defineProps({ blok: Object });
+  const prop = defineProps({ blok: Object, headelem:{ type:String ,default:'div'} });
   const fontFamily = computed( () => {
     return `"${prop.blok.family.split('+').join(" ")}"`;
   });
@@ -21,9 +28,15 @@
 </script>
 
 <style lang="scss" >
-.mFontJp{
-  font-family: v-bind(fontFamily);
-  font-weight: v-bind(fontWeight);
-  font-size  : v-bind(fontEmSize);
+.mFontJp,.mFontJp *{
+  &.mFontJp--family{
+    font-family: v-bind(fontFamily);
+  }
+  &.mFontJp--weight{
+    font-weight: v-bind(fontWeight);
+  }
+  &.mFontJp--emsize{
+    font-size  : v-bind(fontEmSize);
+  }
 }
 </style>

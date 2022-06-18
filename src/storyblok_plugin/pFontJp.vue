@@ -44,6 +44,7 @@ const Fieldtype = {
         'M+PLUS+Rounded+1c',
         'Zen+Maru+Gothic',
         'Zen+Kaku+Gothic+New',
+        'Arvo',
         ]
     }
   },

@@ -12,7 +12,7 @@
       right:0;
       bottom:0;
       z-index: -1;
-      -webkit-text-stroke: calc($bSize*0.02em) hsl($cDeco);
+      -webkit-text-stroke: calc($bSize*0.01em) hsl($cDeco);
     }
   }
   @mixin typo-retro-02($cDeco,$cText,$cSub,$bSize) {

@@ -1,6 +1,8 @@
 <template>
-  <component 
-    :is="headelem" 
+
+  <mFontJp
+    :blok="blok.font" 
+    :headelem="headelem"
     :class="[
       'eTitle',
       `eTitle-${blok.aligin}`,
@@ -8,17 +10,16 @@
       `eTitle-typo-${blok.typo}`,
       `eTitle-colorset-${blok.colorset}`,
       `mShadow-d${blok.shadow}`
-    ]"
-  >
-    <span 
-      v-for="word in words"
-      :data-text="word"
-      :key="word"
-      :class="['eTitle-word']"
-    >
-      {{word}}
-    </span>
-  </component>
+    ]">
+      <span 
+        v-for="word in words"
+        :data-text="word"
+        :key="word"
+        :class="['eTitle-word']"
+      >
+        {{word}}
+      </span>
+  </mFontJp>
 </template>
 
 <script setup>
@@ -42,6 +43,7 @@
   const words = computed( () => {
     return prop.blok.text.split('\n');
   } );
+  /*
   const emsize = computed( () => {
     if(prop.blok.emsize){
       return `${prop.blok.emsize.value}em`;
@@ -54,15 +56,16 @@
     }
     return "400";
   } );
+  */
   const psize = computed( () => {
     let base = 1;
     switch(prop.blok.headline){
       case 'h1':
-        base += 0.1;
+        base += 0.2;
       case 'h2':
-        base += 0.1;
+        base += 0.2;
     }
-    return `${prop.blok.weight * base}`;
+    return `${9  * base}`;
   } );
 </script>
 
@@ -74,8 +77,10 @@
   .eTitle{
     .eTitle-word{
       display:inline-block;
+      /*
       font-size:v-bind(emsize);
       font-weight:v-bind(weight);
+      */
     }
     
     &.eTitle-left   {text-align:left  }
