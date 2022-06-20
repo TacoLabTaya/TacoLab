@@ -1,5 +1,5 @@
 
-  @mixin retrostecker($cDeco:(0,100%,100%), $cText:(0,0%,0%), $bSize:9 ){
+  @mixin retrostecker($cDeco:(0,100%,100%), $cText:(0,0%,0%)){
     position: relative;
     z-index: 0;
     color: hsl($cText);
@@ -12,11 +12,11 @@
       right:0;
       bottom:0;
       z-index: -1;
-      -webkit-text-stroke: calc($bSize*0.01em) hsl($cDeco);
+      -webkit-text-stroke: calc(9*0.01em) hsl($cDeco);
     }
   }
-  @mixin typo-retro-02($cDeco,$cText,$cSub,$bSize) {
-    @include retrostecker($cDeco,$cText,$bSize);
+  @mixin typo-retro-02($cDeco,$cText,$cSub) {
+    @include retrostecker($cDeco,$cText);
     //position:static;
     background-repeat: repeat;
     background: 

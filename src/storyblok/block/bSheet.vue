@@ -1,5 +1,9 @@
 <template>
-  <div :class="['bSheet',`mShadow-d${blok.shadow}`]">
+  <div :class="[
+      'bSheet',
+      `mShadow-d${blok.shadow}`,
+      { 'mSheet-childmargin': blok.childmargin !=null }
+    ]">
     <StoryblokComponent v-for="blok in blok.contents" :key="blok._uid" :blok="blok" class="bSheet-contents"/>
     <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
   </div>
@@ -33,6 +37,9 @@
   const justify = computed( () => {
     return `${prop.blok.justify}`;
   } );
+  const childmargin = computed( () => {
+    return `${prop.blok.childmargin}rem`;
+  } );
 </script>
 
 <style lang="scss" scoped >
@@ -63,5 +70,9 @@
   display:flex;
   flex-direction: column;
   justify-content: v-bind(justify);
+
+  &.mSheet-childmargin > * + * {
+    margin-top: v-bind(childmargin);
+  }
 }
 </style>

@@ -5,7 +5,8 @@
       { 'mFontJp'        : blok.ison },
       { 'mFontJp--family': blok.family != ''  },
       { 'mFontJp--weight': blok.weight != 400 },
-      { 'mFontJp--emsize': blok.emsize != 1   }
+      { 'mFontJp--emsizePC': blok.emsizePC != '1' },
+      { 'mFontJp--emsizeSP': blok.emsizeSP != '1' },
     ]">
     <link v-if="blok.family!=''" rel="preconnect" href="https://fonts.googleapis.com">
     <link v-if="blok.family!=''" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,21 +23,29 @@
   const fontWeight = computed( () => {
     return prop.blok.weight;
   });
-  const fontEmSize = computed( () => {
-    return `${prop.blok.emsize}em`;
+  const fontEmSizePC = computed( () => {
+    return `${prop.blok.emsizePC}em`;
+  });
+  const fontEmSizeSP = computed( () => {
+    return `${prop.blok.emsizeSP}em`;
   });
 </script>
 
 <style lang="scss" >
-.mFontJp,.mFontJp *{
-  &.mFontJp--family{
+.mFontJp--family,.mFontJp--family *{
     font-family: v-bind(fontFamily);
-  }
-  &.mFontJp--weight{
+}
+.mFontJp--weight,.mFontJp--weight *{
     font-weight: v-bind(fontWeight);
+}
+.mFontJp--emsizePC {
+  >div,>h1,>h2,>h3,>p,>a,>span{
+    @include mq('LARGE'){ font-size: v-bind(fontEmSizePC);}
   }
-  &.mFontJp--emsize{
-    font-size  : v-bind(fontEmSize);
+}
+.mFontJp--emsizeSP {
+  >div,>h1,>h2,>h3,>p,>a,>span{
+    @include mq('SHORT'){ font-size: v-bind(fontEmSizeSP); }
   }
 }
 </style>

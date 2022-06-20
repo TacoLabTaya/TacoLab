@@ -57,6 +57,7 @@
     return "400";
   } );
   */
+ /*
   const psize = computed( () => {
     let base = 1;
     switch(prop.blok.headline){
@@ -67,6 +68,7 @@
     }
     return `${9  * base}`;
   } );
+  */
 </script>
 
 <style lang="scss" scoped>
@@ -144,12 +146,12 @@
     }
     &.eTitle-typo-stecker{
       .eTitle-word{
-        @include typo-retro-02(var(--c-deco),var(--c-text-d),var(--c-text),v-bind(psize));
+        @include typo-retro-02(var(--c-deco),var(--c-text-d),var(--c-text));
       }
     }
     &.eTitle-typo-layered{
       .eTitle-word{
-         @include retrostecker(var(--c-deco),var(--c-text),v-bind(psize));
+         @include retrostecker(var(--c-deco),var(--c-text));
       }
     }
   }
