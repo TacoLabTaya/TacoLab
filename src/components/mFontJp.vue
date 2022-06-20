@@ -2,11 +2,11 @@
   <component 
     :is="headelem" 
     :class="[
-      { 'mFontJp'        : blok.ison },
-      { 'mFontJp--family': blok.family != ''  },
-      { 'mFontJp--weight': blok.weight != 400 },
-      { 'mFontJp--emsizePC': blok.emsizePC != '1' },
-      { 'mFontJp--emsizeSP': blok.emsizeSP != '1' },
+      { 'mFontJp'          : blok.ison },
+      { 'mFontJp--family'  : blok.ison && blok.family != ''  },
+      { 'mFontJp--weight'  : blok.ison && blok.weight != 400 },
+      { 'mFontJp--emsizePC': blok.ison && blok.emsizePC != '1' },
+      { 'mFontJp--emsizeSP': blok.ison && blok.emsizeSP != '1' },
     ]">
     <link v-if="blok.family!=''" rel="preconnect" href="https://fonts.googleapis.com">
     <link v-if="blok.family!=''" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

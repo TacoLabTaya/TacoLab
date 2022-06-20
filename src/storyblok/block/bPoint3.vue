@@ -1,5 +1,9 @@
 <template>
-  <div class="bPoint3">
+  <div :class="[
+    'bPoint3',
+    `bPoint3-pc-${prop.blok.stylePC}`,
+    `bPoint3-sp-${prop.blok.styleSP}`
+    ]">
     <StoryblokComponent v-for="blok in blok.points" :key="blok._uid" :blok="blok" />
   </div>
 </template>
@@ -30,12 +34,34 @@
   height:v-bind(height);
   display:flex;
   justify-content:space-around;
-  @include mq('LARGE'){
-    flex-direction:v-bind(stylePC);
+
+  //height:100%;
+  &.bPoint3-pc-row{
+    @include mq('LARGE'){
+      flex-direction:row;
+      >*{width:33%;}
+    }
   }
-  @include mq('SHORT'){
-    flex-direction:v-bind(styleSP);
+  &.bPoint3-pc-column{
+    @include mq('LARGE'){
+      flex-direction:column;
+      >*{height:33%;}
+    }
   }
-  height:100%;
+  //height:100%;
+  &.bPoint3-sp-row{
+    @include mq('SHORT'){
+      flex-direction:row;
+      >*{width:33%;}
+    }
+  }
+  &.bPoint3-sp-column{
+    @include mq('SHORT'){
+      flex-direction:column;
+      >*{height:33%;}
+    }
+  }
+
+
 }
 </style>

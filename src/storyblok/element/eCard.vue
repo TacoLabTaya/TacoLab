@@ -13,16 +13,20 @@
 <script setup>
   const prop = defineProps({ blok: Object });
   const marginSP = computed( () => {
-    return`${prop.blok.spaces.margintsp}% ${prop.blok.spaces.marginrsp}% ${prop.blok.spaces.marginbsp}% ${prop.blok.spaces.marginlsp}%`;
+    if( prop.blok.marginSP == null || prop.blok.marginSP.ison === false) return "0%";
+    return`${prop.blok.marginSP.top}% ${prop.blok.marginSP.right}% ${prop.blok.marginSP.bottom}% ${prop.blok.marginSP.left}%`;
   } );
   const paddingSP = computed( () => {
-    return `${prop.blok.spaces.paddingtsp}% ${prop.blok.spaces.paddingrsp}% ${prop.blok.spaces.paddingbsp}% ${prop.blok.spaces.paddinglsp}%`;
+    if( prop.blok.paddingSP == null || prop.blok.paddingSP.ison === false) return "0%";
+    return`${prop.blok.paddingSP.top}% ${prop.blok.paddingSP.right}% ${prop.blok.paddingSP.bottom}% ${prop.blok.paddingSP.left}%`;
   } );
   const marginPC = computed( () => {
-    return `${prop.blok.spaces.margintpc}% ${prop.blok.spaces.marginrpc}% ${prop.blok.spaces.marginbpc}% ${prop.blok.spaces.marginlpc}%`;
+    if( prop.blok.marginPC == null || prop.blok.marginPC.ison === false) return "0%";
+    return`${prop.blok.marginPC.top}% ${prop.blok.marginPC.right}% ${prop.blok.marginPC.bottom}% ${prop.blok.marginPC.left}%`;
   } );
   const paddingPC = computed( () => {
-   return `${prop.blok.spaces.paddingtpc}% ${prop.blok.spaces.paddingrpc}% ${prop.blok.spaces.paddingbpc}% ${prop.blok.spaces.paddinglpc}%`;
+    if( prop.blok.paddingPC == null || prop.blok.paddingPC.ison === false) return "0%";
+    return`${prop.blok.paddingPC.top}% ${prop.blok.paddingPC.right}% ${prop.blok.paddingPC.bottom}% ${prop.blok.paddingPC.left}%`;
   } );
 </script>
 
@@ -30,7 +34,7 @@
 .eCard{
   .eCard-title{}
   .eCard-text {}
-  
+
   @include mq('SHORT'){ 
     margin :v-bind(marginSP);
     padding:v-bind(paddingSP);
@@ -48,7 +52,7 @@
   .eCard-background{
     position:absolute;
     z-index:-1;
-    top:0;right:0;bottom:0;left:0;
+    //top:0;right:0;bottom:0;left:0;
   }
 }
 </style>
