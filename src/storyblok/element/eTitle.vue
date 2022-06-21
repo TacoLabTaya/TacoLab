@@ -43,32 +43,6 @@
   const words = computed( () => {
     return prop.blok.text.split('\n');
   } );
-  /*
-  const emsize = computed( () => {
-    if(prop.blok.emsize){
-      return `${prop.blok.emsize.value}em`;
-    }
-    return "1em";
-  } );
-  const weight = computed( () => {
-    if(prop.blok.weight){
-      return `${prop.blok.weight*100}`;
-    }
-    return "400";
-  } );
-  */
- /*
-  const psize = computed( () => {
-    let base = 1;
-    switch(prop.blok.headline){
-      case 'h1':
-        base += 0.2;
-      case 'h2':
-        base += 0.2;
-    }
-    return `${9  * base}`;
-  } );
-  */
 </script>
 
 <style lang="scss" scoped>

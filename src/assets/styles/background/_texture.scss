@@ -33,14 +33,24 @@
     repeating-linear-gradient(-45deg, hsla($c3,.4) 0%, hsla($c3,.5) 5%, transparent 5%, transparent 10%);
   background-color: hsl($c1);
 }
-@mixin texture-3dbox-01($c1,$c2,$c3,$p) {
-    background-repeat: repeat;
+
+@mixin texture-3dbox-01($c1,$c3,$p) {
+  background-repeat: repeat;
   background:
-    conic-gradient(from 45deg,hsla($c3, 1) 0,hsla($c3, 1) 90deg,hsla($c3, 0.8) 90deg,
-    hsla($c3, 0.8) 180deg,hsla($c3, 0.6) 180deg,hsla($c3, 0.6) 270deg,
-    hsla($c3, 0.5) 270deg,hsla($c3, 0.5) 360deg),hsl($c1);
-  background-size: 5px 5px;
+    conic-gradient(
+      from 45deg,
+      hsla($c3, 1) 0,
+      hsla($c3, 1) 90deg,
+      hsla($c3, 0.8) 90deg,
+      hsla($c3, 0.8) 180deg,
+      hsla($c3, 0.6) 180deg,
+      hsla($c3, 0.6) 270deg,
+      hsla($c3, 0.5) 270deg,
+      hsla($c3, 0.5) 360deg),
+      hsl($c1);
+  background-size: calc($p*1px) calc($p*1px);
 }
+
 @mixin texture-3dbox-02($c1,$c2,$c3,$p) {
     background-repeat: repeat;
   background:
@@ -87,14 +97,14 @@
     background-image:
       radial-gradient(transparent 28px,hsl($c3) 28px,hsl($c3) 32px,transparent 32px);
   }
-  @mixin texture-marks-03($c1,$c2,$c3,$p) {
+  @mixin texture-marks-03($c1,$c3,$p) {
     background-repeat: repeat;
     background-color: hsl($c1);
-    background-size: 48px 48px;
+    background-size: $p*2px $p*2px;
     background-image:
-      radial-gradient(transparent 20px,hsl($c3) 20px,hsl($c3) 24px,transparent 24px),
-      radial-gradient(transparent 20px,hsl($c3) 20px,hsl($c3) 24px,transparent 24px);
-    background-position: 0 0 , 24px 24px;
+      radial-gradient(transparent $p*0.9px,hsl($c3) $p*0.9px,hsl($c3) $p*1px,transparent $p*1px),
+      radial-gradient(transparent $p*0.9px,hsl($c3) $p*0.9px,hsl($c3) $p*1px,transparent $p*1px);
+    background-position: 0 0 , $p*1px $p*1px;
   }
   @mixin texture-marks-04($c1,$c2,$c3,$p) {
     background-repeat: repeat;
