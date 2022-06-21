@@ -6,6 +6,7 @@
       `eBack-${blok.modestyle.mode}`,
       `eBack-${blok.modestyle.style}`,
       `eBack-colorset-${blok.colorset}`,
+      {'eBack-anime-living' : blok.living}
     ]"
   />
 </template>
@@ -35,6 +36,7 @@
  */
 @import "@/assets/styles/background/_texture.scss";
 @import "@/assets/styles/background/_flame.scss";
+@import "@/assets/styles/background/_gradient.scss";
 
 
 
@@ -86,10 +88,18 @@
       &.eBack-tsurutsuru{}
       &.eBack-dekoboko{}
     }
+    &.eBack-gradient{
+      &.eBack-circle{
+        @include  grad-circle-01((var(--c-deco-l)),(var(--c-deco-d)),40%,40%);
+      }
+    }
     &.eBack-flame{
       &.eBack-glow{}
       &.eBack-metal{
         @include flame-metal-01((var(--c-deco-l)),(var(--c-deco-d)),(var(--c-back-l)),(var(--c-back-d)));
+        &.eBack-anime-living{
+          @include flame-metal-01-anime(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),8s);
+        }
       }
     }
     &.eBack-glassgrad{

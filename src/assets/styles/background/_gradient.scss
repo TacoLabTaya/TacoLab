@@ -1,0 +1,7 @@
+@mixin grad-circle-01($cBack-l,$cBack-d,$left,$right){
+    background: radial-gradient(
+        circle at $left $right,
+        hsl($cBack-l) 0%,
+        hsl($cBack-d) 60%
+    );
+}

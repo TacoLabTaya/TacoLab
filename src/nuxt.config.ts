@@ -22,5 +22,5 @@ export default defineNuxtConfig({
       height: '200px',
       continuous: true,
       duration: 3000
-    }   
+    }
 })

@@ -1,10 +1,7 @@
 
+@import "@/assets/styles/background/_gradient.scss";
 @mixin flame-backgrad-01($cBack-l,$cBack-d){
-    background: radial-gradient(
-        circle at 40% 40%,
-        hsl($cBack-l) 0%,
-        hsl($cBack-d) 60%
-    );
+    @include  grad-circle-01($cBack-l,$cBack-d,40%,40%)
 }
 @property --angle {
     syntax: '<angle>';
@@ -26,6 +23,25 @@
         right: 10px;
         bottom:10px;
 
+        --angle: 45deg;
+        background:linear-gradient(
+                var(--angle),
+                hsl($cBack-d) 20%,
+                hsl($cMetal-l) 50%,
+                hsl($cBack-d) 80%
+            );
+    }
+    
+    &::after{
+        top:   15px;
+        left:  15px;
+        right: 15px;
+        bottom:15px;
+        @include flame-backgrad-01($cBack-l,$cBack-d);
+    }
+}
+@mixin flame-metal-01-anime($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$time) {
+    &::before{
         --angle: 0deg;
         background:linear-gradient(
                 var(--angle),
@@ -36,19 +52,10 @@
 
         @keyframes metalgrad {
             to {
-                --angle: 3600deg;
+                --angle: 360deg;
               }
         }
 
-        animation: metalgrad 60s infinite ease-in-out;
-    }
-    
-    &::after{
-        top:   15px;
-        left:  15px;
-        right: 15px;
-        bottom:15px;
-        //background:linear-gradient(45deg,hsl($cBack-d),hsl($cMetal-l),hsl($cMetal-d) )
-        @include flame-backgrad-01($cBack-l,$cBack-d);
+        animation: metalgrad $time infinite linear;
     }
 }
