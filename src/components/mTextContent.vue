@@ -1,5 +1,13 @@
 <template>
-    <component :is="elem" :style="styleset">
+    <component 
+        :is="elem" 
+        :style="styleset"
+        :class="[
+            'mTextContent',
+            styledclass != `mTextContent-styled-${styledclass}` ? '' :'',
+        ]"
+        @click="onClick"
+    >
         <mTextContent
             v-for="(con,index) in content.content" 
             :key="`content-${index}`"
@@ -34,8 +42,8 @@
         return 'span';
       case 'list_item':
         return 'li';
-      case 'link':
-        return 'a';
+      case 'horizontal_rule':
+        return 'hr';
       default:
         return 'div';
     }
@@ -53,7 +61,7 @@
         return 'block';
       case 'text':
       case 'list_item':
-      case 'link':
+      case 'horizontal_rule':
         return 'inline';
       default:
         return 'block';
@@ -77,4 +85,34 @@
     }
     return style
   });
+  const styledclass = computed( () => {
+    if( prop.content.marks == null ) return '';
+    var mark = prop.content.marks.find( mark => mark.type != null && mark.type == 'styled');
+    if(mark == undefined || mark.attrs == null || mark.attrs.class == null) return '';
+    return mark.attrs.class
+  });
+  const isLink = computed( () => {
+    if( prop.content.marks == null ) return false;
+    if( prop.content.marks.find( mark => mark.type != null && mark.type == 'link') != undefined ){
+        return true;
+    }
+    return false;
+  })
+  const toLink = computed( () => {
+    if( prop.content.marks == null ) return null;
+    var mark = prop.content.marks.find( mark => mark.type != null && mark.type == 'link')
+    if( mark != undefined ){
+        return null;
+    }
+    return {
+        href: mark.attrs.href,
+        target: mark.attrs.target,
+        linktype: mark.attrs.linktype
+    };
+  })
+  const onClick = (e) => {
+    if(isLink){
+        console.log(toLink);
+    }
+  }
 </script>
