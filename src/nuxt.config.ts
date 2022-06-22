@@ -16,11 +16,5 @@ export default defineNuxtConfig({
                 },
             },
         },
-    },
-    loading: {
-      color: 'DodgerBlue',
-      height: '200px',
-      continuous: true,
-      duration: 3000
     }
 })

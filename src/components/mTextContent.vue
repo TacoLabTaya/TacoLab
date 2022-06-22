@@ -1,17 +1,20 @@
 <template>
     <component :is="elem">
         <mTextContent
-            v-for="(con,index) in block.content" 
+            v-for="(con,index) in content.content" 
             :key="`content-${index}`"
             :content="con"
         />
-        {{ block.content.text != null ? block.content.text : '' }}
+        {{ content.text == null ? '': content.text }}
     </component>
 </template>
 <script setup>
   const prop = defineProps({ content: Object });
   const elem = computed( () => {
-    switch (prop.type){
+    //console.log(prop);
+    //console.log(`elem ${prop.type} set`);
+    if(prop.content.type == null) return 'span';
+    switch (prop.content.type){
       case 'doc':
         return 'div';
       case 'paragraph':
@@ -21,7 +24,7 @@
       case 'ordered_list':
         return 'ol';
       case 'heading':
-        return `h${block.attrs.level}`;
+        return `h${prop.content.attrs.level}`;
       case 'text':
         return 'span';
       case 'list_item':
@@ -33,7 +36,7 @@
     }
   });
   const display = computed( () => {
-    switch (prop.type){
+    switch (prop.content.type){
       case 'doc':
       case 'paragraph':
       case 'bullet_list':

@@ -9,28 +9,11 @@
     ]"
     >
       <mTextContent
-        v-for="(con,index) in blok.content"
+        v-for="(con,index) in blok.text.content"
         :key="`con-${index}`"
         :content="con"
       />
   </mFontJp>
-    <!--
-  <mFontJp
-    :blok="blok.font" 
-    :headelem="'div'"
-    :class="[
-      'eText',
-      `eText-${blok.aligin}`,
-      `eText-colorset-${blok.colorset}`,
-    ]">
-    abc
-      <mTextContent
-        v-for="(con,index) in blok.content"
-        :key="`con-${index}`"
-        :content="con"
-      />
-  </mFontJp>
-  -->
 </template>
 
 <script setup>
