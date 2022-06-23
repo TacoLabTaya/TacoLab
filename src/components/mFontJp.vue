@@ -5,6 +5,8 @@
       { 'mFontJp'          : blok.ison },
       { 'mFontJp--family'  : blok.ison && blok.family != null && blok.family != ''  },
       { 'mFontJp--weight'  : blok.ison && blok.weight != null && blok.weight != 400 },
+      { 'mFontJp--height'  : blok.ison && blok.height != null && blok.height != 1.2 },
+      { 'mFontJp--letter'  : blok.ison && blok.letter != null && blok.letter != 0 },
       { 'mFontJp--emsizePC': blok.ison && blok.emsizePC != null && blok.emsizePC != '1' },
       { 'mFontJp--emsizeSP': blok.ison && blok.emsizeSP != null && blok.emsizeSP != '1' },
     ]">
@@ -33,6 +35,14 @@
     if( prop.blok.emsizeSP == null ) return "1em";
     return `${prop.blok.emsizeSP}em`;
   });
+  const height = computed( () => {
+    if( prop.blok.height == null ) return "1.2";
+    return `${prop.blok.height}`;
+  });
+  const letter = computed( () => {
+    if( prop.blok.letter == null ) return "em";
+    return `${prop.blok.letter}em`;0
+  });
 </script>
 
 <style lang="scss" >
@@ -41,6 +51,12 @@
 }
 .mFontJp--weight,.mFontJp--weight *{
     font-weight: v-bind(fontWeight);
+}
+.mFontJp--letter,.mFontJp--letter *{
+    letter-spacing: v-bind(letter);
+}
+.mFontJp--height,.mFontJp--height *{
+    line-height: v-bind(height);
 }
 .mFontJp--emsizePC {
   >div,>h1,>h2,>h3,>p,>a,>span{

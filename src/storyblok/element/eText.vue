@@ -6,6 +6,7 @@
       'eText',
       `eText-${blok.aligin}`,
       `eText-colorset-${blok.colorset}`,
+      { 'eText-childmargin': blok.childmargin !=null }
     ]"
     >
       <mTextContent
@@ -19,6 +20,9 @@
 <script setup>
   const prop = defineProps({ blok: Object });
 
+  const childmargin = computed( () => {
+    return `${prop.blok.childmargin}rem`;
+  } );
 </script>
 
 <style lang="scss" >
@@ -57,5 +61,10 @@
 
     color: var(--c-text);
 
+    &.eText-childmargin{
+      .mTextContent-display-block + .mTextContent-display-block{
+        margin-top: v-bind(childmargin);
+      }
+    }
   }
 </style>

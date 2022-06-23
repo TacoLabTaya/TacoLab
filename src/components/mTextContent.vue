@@ -5,6 +5,7 @@
         :class="[
             'mTextContent',
             styledclass != `mTextContent-styled-${styledclass}` ? '' :'',
+            `mTextContent-display-${display}`,
         ]"
         @click="onClick"
     >

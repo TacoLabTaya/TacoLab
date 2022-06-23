@@ -26,6 +26,14 @@ const Fieldtype = {
       <input type="range" min="0" max="10" step="0.1" v-model="model.emsizeSP" />
       <label class="uk-form-label uk-width-1-2">SP {{model.emsizeSP}}em</label>
     </div>
+    <div class="uk-grid">
+      <input type="range" min="0" max="2" step="0.1" v-model="model.height" />
+      <label class="uk-form-label uk-width-1-2">line {{model.height}}</label>
+    </div>
+    <div class="uk-grid">
+      <input type="range" min="0" max="1" step="0.02" v-model="model.letter" />
+      <label class="uk-form-label uk-width-1-2">space {{model.letter}}em</label>
+    </div>
   </div>
   
 </div>`,
@@ -37,6 +45,8 @@ const Fieldtype = {
         weight: 400,
         emsizePC:   1,
         emsizeSP:   1,
+        height: 1.2,
+        letter: 0,
       }
     }
   },
