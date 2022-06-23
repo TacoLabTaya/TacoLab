@@ -98,7 +98,7 @@
       &.eBack-metal{
         @include flame-metal-01((var(--c-deco-l)),(var(--c-deco-d)),(var(--c-back-l)),(var(--c-back-d)));
         &.eBack-anime-living{
-          @include flame-metal-01-anime(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),8s);
+          @include flame-metal-01-anime(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),var(--s-bpm-8));
         }
       }
     }
