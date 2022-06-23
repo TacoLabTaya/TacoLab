@@ -10,7 +10,7 @@ const Fieldtype = {
     <option v-for="st in style[model.mode]" :value="st">{{st}}</option>
   </select>
   <div class="uk-grid">
-    <input type="range" min="1" max="10" step="1" v-model="model.size" />
+    <input type="range" min="0" max="5" step="0.2" v-model="model.size" />
     <label class="uk-form-label uk-width-1-4">{{model.size}}point</label>
   </div>
   <select name="blend" v-model="model.blend" size="1" class="uk-width-3-4">

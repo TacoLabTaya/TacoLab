@@ -96,7 +96,7 @@
     &.eBack-flame{
       &.eBack-glow{}
       &.eBack-metal{
-        @include flame-metal-01((var(--c-deco-l)),(var(--c-deco-d)),(var(--c-back-l)),(var(--c-back-d)));
+        @include flame-metal-01(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),v-bind(point));
         &.eBack-anime-living{
           @include flame-metal-01-anime(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),var(--s-bpm-8));
         }
