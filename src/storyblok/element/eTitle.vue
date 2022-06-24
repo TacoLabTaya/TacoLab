@@ -3,7 +3,7 @@
   <mFontJp
     :blok="blok.font" 
     :headelem="headelem"
-    v-appear
+    v-appear="'eTitle-appear'"
     :class="[
       'eTitle',
       `eTitle-${blok.aligin}`,
