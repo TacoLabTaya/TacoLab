@@ -3,21 +3,22 @@
   <mFontJp
     :blok="blok.font" 
     :headelem="headelem"
-    v-appear="'APPEAR'"
     :class="[
       'eTitle',
-      `eTitle-${blok.aligin}`,
-      {'eTitle-wrap': blok.wrap},
-      `eTitle-typo-${blok.typo}`,
-      `eTitle-colorset-${blok.colorset}`,
-      `eTitle-appear-${blok.appear}`,
-      `mShadow-d${blok.shadow}`
+      {'eTitle-wrap'  : blok.wrap},
+      {'eTitle-living': blok.living},
+      blok.aligin   != null && blok.aligin   != '' ? `eTitle-${blok.aligin}` : '',
+      blok.typo     != null && blok.typo     != '' ? `eTitle-typo-${blok.typo}` : '',
+      blok.colorset != null && blok.colorset != '' ? `eTitle-colorset-${blok.colorset}` : '',
+      blok.appear   != null && blok.appear   != '' ? `eTitle-appear-${blok.appear}` : '',
+      blok.shadow   != null && blok.shadow   != '' ? `mShadow-d${blok.shadow}` : ''
     ]">
       <span 
         v-for="word in words"
         :data-text="word"
         :key="word"
         :class="['eTitle-word']"
+        v-appear="'APPEAR'"
       >
         {{word}}
       </span>
@@ -107,6 +108,9 @@
       }
     }
 
+
+
+
     &.eTitle-typo-none{
       .eTitle-word{}
     }
@@ -115,7 +119,13 @@
     }
     &.eTitle-typo-neon{
       .eTitle-word{
-        @include typo-blight-01((var(--c-base-l)),(var(--c-base)),(var(--c-acce-d)),6s);
+        @include typo-neon-01((var(--c-base-l)),(var(--c-base)),(var(--c-acce-d)));
+      }
+      &.eTitle-living .eTitle-word{
+        @include typo-neon-01-living((var(--c-base-l)),(var(--c-base)),(var(--c-acce-d)),var(--s-bpm-4));
+      }
+      &.eTitle-appear-special .eTitle-word.APPEAR{
+        @include typo-neon-01-appear((var(--c-base-l)),(var(--c-base)),(var(--c-acce-d)),var(--s-bpm-4));
       }
     }
     &.eTitle-typo-pop{
@@ -128,15 +138,27 @@
     }
     &.eTitle-typo-layered{
       .eTitle-word{
-         @include retrostecker(var(--c-deco),var(--c-text));
+         @include typo-retro-01(var(--c-deco),var(--c-text));
+      }
+    }
+    &.eTitle-typo-spark{
+      .eTitle-word{
+         @include typo-spark-01(var(--c-text),var(--c-deco-l));
+      }
+      &.eTitle-living .eTitle-word{
+        @include typo-spark-01-living(var(--c-text),var(--c-deco-l),var(--s-bpm-4));
+      }
+      &.eTitle-appear-special .eTitle-word.APPEAR{
+        @include typo-spark-01-appear(var(--c-text),var(--c-deco-l),var(--s-bpm-4));
       }
     }
 
 
-
     &.eTitle-appear-slidein{
-      &:not(.APPEAR){ @include appear-slidein-off(var(--s-bpm-half));}
-           &.APPEAR { @include appear-slidein-on (var(--s-bpm-half));}
+      .eTitle-word{
+        &:not(.APPEAR){ @include appear-slidein-off(var(--s-bpm-half));}
+             &.APPEAR { @include appear-slidein-on (var(--s-bpm-half));}
+      }
     }
   }
 </style>
