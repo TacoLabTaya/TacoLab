@@ -3,13 +3,14 @@
   <mFontJp
     :blok="blok.font" 
     :headelem="headelem"
-    v-appear="'eTitle-appear'"
+    v-appear="'APPEAR'"
     :class="[
       'eTitle',
       `eTitle-${blok.aligin}`,
       {'eTitle-wrap': blok.wrap},
       `eTitle-typo-${blok.typo}`,
       `eTitle-colorset-${blok.colorset}`,
+      `eTitle-appear-${blok.appear}`,
       `mShadow-d${blok.shadow}`
     ]">
       <span 
@@ -48,8 +49,9 @@
 
 <style lang="scss" scoped>
 
-@import "@/assets/styles/_shadow.scss";
+//@import "@/assets/styles/_shadow.scss";
 @import "@/assets/styles/_typography.scss";
+@import "@/assets/styles/_appear.scss";
 
   .eTitle{
     .eTitle-word{
@@ -128,6 +130,13 @@
       .eTitle-word{
          @include retrostecker(var(--c-deco),var(--c-text));
       }
+    }
+
+
+
+    &.eTitle-appear-slidein{
+      &:not(.APPEAR){ @include appear-slidein-off(var(--s-bpm-half));}
+           &.APPEAR { @include appear-slidein-on (var(--s-bpm-half));}
     }
   }
 </style>

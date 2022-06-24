@@ -49,6 +49,7 @@
 <style lang="scss" scoped >
 @import "@/assets/styles/_shadow.scss";
 .bSheet{
+  height:100vh;
   height:v-bind(height);
   @include mq('SHORT'){ 
     margin :v-bind(marginSP);

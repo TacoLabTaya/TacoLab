@@ -16,11 +16,6 @@ export default defineNuxtPlugin((nuxtApp) => {
           }
         }
       };
-      const isInScreen = (el) => {
-        const { top: elementTop, bottom: elementBottom } = el.getBoundingClientRect();
-        // 画面下端 < HTML要素の下端 && HTML要素の上端 < 画面上端
-        return (window.screenTop < elementTop && elementBottom < window.innerHeight);
-      };
       const checkAppear = () => {
         if(isInScreen(el)){
           el.classList.add(classname);
@@ -28,13 +23,29 @@ export default defineNuxtPlugin((nuxtApp) => {
         else{
           el.classList.remove(classname);
         }
-      };
+      };   
       window.addEventListener('scroll', throttle(checkAppear, 100));
       checkAppear();
+    },
+    
+    updated(el, binding, vnode) {
+      var classname = 'pAppear-ap';
+      if(binding.value != null && binding.value != ''){
+        classname = binding.value;
+      }
+      if(isInScreen(el)){
+        el.classList.add(classname);
+      }
+      else{
+        el.classList.remove(classname);
+      }
     }
   })
 })
-
-
+const isInScreen = (el) => {
+  const { top: elementTop, bottom: elementBottom } = el.getBoundingClientRect();
+  // 画面下端 < HTML要素の下端 && HTML要素の上端 < 画面上端
+  return (window.screenTop < elementTop && elementBottom < window.innerHeight);
+};   
 
 

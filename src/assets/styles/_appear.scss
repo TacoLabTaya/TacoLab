@@ -1,0 +1,9 @@
+
+  @mixin appear-slidein-off($t) {
+    transition: $t;
+    transform: translateX(100vw);
+  }
+  @mixin appear-slidein-on($t) {
+    transition: $t;
+    transform: 0;
+  }
