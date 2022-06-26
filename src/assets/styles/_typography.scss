@@ -86,20 +86,19 @@
   }
   @mixin typo-spark-01-living($cMain,$cSpot,$t) {
     background-size: 500% 100%;
-    animation: sparkmove $t ease 0s infinite both normal;
+    animation: sparkwaitmove $t ease 0s infinite both normal;
   }
   @mixin typo-spark-01-appear($cMain,$cSpot,$t) {
     background-size: 500% 100%;
     animation: sparkmove $t ease 0s 1 both normal;
   }
   @keyframes sparkmove {
-    0%,
-    80% {
-      background-position: 100%;
-    }
-    100% {
-      background-position: 0%;
-    }
+    0%     { background-position: 100%;}
+    100%   { background-position:   0%;}
+  }
+  @keyframes sparkwaitmove {
+    0%,75% { background-position: 100%;}
+    100%   { background-position:   0%;}
   }
 
   /******************************************************/

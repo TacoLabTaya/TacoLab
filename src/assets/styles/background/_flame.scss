@@ -8,6 +8,16 @@
     initial-value: 0deg;
     inherits: false;
 }
+
+@mixin flame-metal-01-base($cBack-l,$cBack-d,$cMetal-l,$cMetal-d) {
+    --angle: 45deg;
+    background:linear-gradient(
+            var(--angle),
+            hsl($cBack-d) 20%,
+            hsl($cMetal-l) 50%,
+            hsl($cBack-d) 80%
+        );
+}
 @mixin flame-metal-01($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$sPoint){
     @include flame-backgrad-01($cBack-l,$cBack-d);
     //position: relative;
@@ -22,14 +32,7 @@
         left:  calc(1rem*$sPoint);
         right: calc(1rem*$sPoint);
         bottom:calc(1rem*$sPoint);
-
-        --angle: 45deg;
-        background:linear-gradient(
-                var(--angle),
-                hsl($cBack-d) 20%,
-                hsl($cMetal-l) 50%,
-                hsl($cBack-d) 80%
-            );
+        @include flame-metal-01-base($cBack-l,$cBack-d,$cMetal-l,$cMetal-d);
     }
     
     &::after{
@@ -40,22 +43,19 @@
         @include flame-backgrad-01($cBack-l,$cBack-d);
     }
 }
-@mixin flame-metal-01-anime($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$time) {
+
+@mixin flame-metal-01-living($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$sec) {
     &::before{
-        --angle: 0deg;
-        background:linear-gradient(
-                var(--angle),
-                hsl($cBack-d) 20%,
-                hsl($cMetal-l) 50%,
-                hsl($cBack-d) 80%
-            );
+        @include flame-metal-01-base($cBack-l,$cBack-d,$cMetal-l,$cMetal-d);
+        @keyframes metalgrad_360 {to { --angle: 405deg;}}
+        animation: metalgrad_360 $sec infinite linear;
+    }
 
-        @keyframes metalgrad {
-            to {
-                --angle: 360deg;
-              }
-        }
-
-        animation: metalgrad $time infinite linear;
+}
+@mixin flame-metal-01-appear($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$sec) {
+    &::before{
+        @include flame-metal-01-base($cBack-l,$cBack-d,$cMetal-l,$cMetal-d);
+        @keyframes metalgrad_180 {to { --angle: 225deg;}}
+        animation: metalgrad_180 $sec 1 linear;
     }
 }

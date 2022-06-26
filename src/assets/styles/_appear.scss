@@ -1,9 +1,11 @@
 
   @mixin appear-slidein-off($t) {
+    //overflow: hidden;
     transition: $t;
     transform: translateX(100vw);
   }
   @mixin appear-slidein-on($t) {
+    //overflow: hidden;
     transition: $t;
     transform: 0;
   }

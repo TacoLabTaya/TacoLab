@@ -117,6 +117,8 @@
     &.eTitle-typo-grad{
       .eTitle-word{}
     }
+
+
     &.eTitle-typo-neon{
       .eTitle-word{
         @include typo-neon-01((var(--c-base-l)),(var(--c-base)),(var(--c-acce-d)));
@@ -128,6 +130,8 @@
         @include typo-neon-01-appear((var(--c-base-l)),(var(--c-base)),(var(--c-acce-d)),var(--s-bpm-4));
       }
     }
+
+    
     &.eTitle-typo-pop{
       .eTitle-word{}
     }
@@ -141,6 +145,7 @@
          @include typo-retro-01(var(--c-deco),var(--c-text));
       }
     }
+
     &.eTitle-typo-spark{
       .eTitle-word{
          @include typo-spark-01(var(--c-text),var(--c-deco-l));
@@ -155,6 +160,7 @@
 
 
     &.eTitle-appear-slidein{
+      //overflow:hidden;
       .eTitle-word{
         &:not(.APPEAR){ @include appear-slidein-off(var(--s-bpm-half));}
              &.APPEAR { @include appear-slidein-on (var(--s-bpm-half));}

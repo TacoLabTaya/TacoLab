@@ -1,11 +1,13 @@
 <template>
   <div 
     v-if="blok.modestyle!=''" 
+    v-appear="'APPEAR'"
     :class="[
       'eBack',
-      `eBack-${blok.modestyle.mode}`,
-      `eBack-${blok.modestyle.style}`,
-      `eBack-colorset-${blok.colorset}`,
+      blok.modestyle != null && blok.modestyle   != '' ? `eBack-${blok.modestyle.mode}`    : '',
+      blok.modestyle != null && blok.modestyle   != '' ? `eBack-${blok.modestyle.style}`   : '',
+      blok.colorset  != null && blok.colorset    != '' ? `eBack-colorset-${blok.colorset}` : '',
+      blok.appear    != null && blok.appear      != '' ? `eBack-appear-${blok.appear}`     : '',
       {'eBack-anime-living' : blok.living}
     ]"
   />
@@ -37,6 +39,7 @@
 @import "@/assets/styles/background/_texture.scss";
 @import "@/assets/styles/background/_flame.scss";
 @import "@/assets/styles/background/_gradient.scss";
+@import "@/assets/styles/_appear.scss";
 
 
 
@@ -95,12 +98,17 @@
     }
     &.eBack-flame{
       &.eBack-glow{}
+
       &.eBack-metal{
         @include flame-metal-01(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),v-bind(point));
         &.eBack-anime-living{
-          @include flame-metal-01-anime(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),var(--s-bpm-8));
+          @include flame-metal-01-living(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),var(--s-bpm-8));
+        }
+        &.eBack-appear-special.APPEAR{
+          @include flame-metal-01-appear(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),var(--s-bpm-1));
         }
       }
+
     }
     &.eBack-glassgrad{
       &.eBack-frosted{}
@@ -108,6 +116,12 @@
     }
     &.eBack-stripe{
       &.eBack-stripe1{}
+    }
+
+    
+    &.eBack-appear-slidein{
+      &:not(.APPEAR){ @include appear-slidein-off(var(--s-bpm-half));}
+           &.APPEAR { @include appear-slidein-on (var(--s-bpm-half));}
     }
   }
 </style>
