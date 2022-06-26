@@ -15,13 +15,16 @@
 
 <script setup>
   const prop = defineProps({ blok: Object });
+  const get4Position = (pos) => {
+    if( pos == null || pos.ison === false) return "0%";
+    const u = pos.unit == null ? '%' : pos.unit;
+    return`${pos.top}${u} ${pos.right}${u} ${pos.bottom}${u} ${pos.left}${u}`;
+  };
   const insetSP = computed( () => {
-    if( prop.blok.positionsSP == null || prop.blok.positionsSP.ison === false) return "0%";
-    return`${prop.blok.positionsSP.top}% ${prop.blok.positionsSP.right}% ${prop.blok.positionsSP.bottom}% ${prop.blok.positionsSP.left}%`;
+    return get4Position(prop.blok.positionsSP);
   } );
   const insetPC = computed( () => {
-    if( prop.blok.positionsPC == null || prop.blok.positionsPC.ison === false) return "0%";
-    return`${prop.blok.positionsPC.top}% ${prop.blok.positionsPC.right}% ${prop.blok.positionsPC.bottom}% ${prop.blok.positionsPC.left}%`;
+    return get4Position(prop.blok.positionsPC);
   } );
   const point = computed( () => {
     if( prop.blok.modestyle == null || prop.blok.modestyle.size == null) return "1";

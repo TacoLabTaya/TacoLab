@@ -22,21 +22,22 @@
         return 'auto';
     }
   } );
+  const get4Position = (pos) => {
+    if( pos == null || pos.ison === false) return "0%";
+    const u = pos.unit == null ? '%' : pos.unit;
+    return`${pos.top}${u} ${pos.right}${u} ${pos.bottom}${u} ${pos.left}${u}`;
+  };
   const marginSP = computed( () => {
-    if( prop.blok.marginSP == null || prop.blok.marginSP.ison === false) return "0%";
-    return`${prop.blok.marginSP.top}% ${prop.blok.marginSP.right}% ${prop.blok.marginSP.bottom}% ${prop.blok.marginSP.left}%`;
+    return get4Position(prop.blok.marginSP);
   } );
   const paddingSP = computed( () => {
-    if( prop.blok.paddingSP == null || prop.blok.paddingSP.ison === false) return "0%";
-    return`${prop.blok.paddingSP.top}% ${prop.blok.paddingSP.right}% ${prop.blok.paddingSP.bottom}% ${prop.blok.paddingSP.left}%`;
+    return get4Position(prop.blok.paddingSP);
   } );
   const marginPC = computed( () => {
-    if( prop.blok.marginPC == null || prop.blok.marginPC.ison === false) return "0%";
-    return`${prop.blok.marginPC.top}% ${prop.blok.marginPC.right}% ${prop.blok.marginPC.bottom}% ${prop.blok.marginPC.left}%`;
+    return get4Position(prop.blok.marginPC);
   } );
   const paddingPC = computed( () => {
-    if( prop.blok.paddingPC == null || prop.blok.paddingPC.ison === false) return "0%";
-    return`${prop.blok.paddingPC.top}% ${prop.blok.paddingPC.right}% ${prop.blok.paddingPC.bottom}% ${prop.blok.paddingPC.left}%`;
+    return get4Position(prop.blok.paddingPC);
   } );
   const justify = computed( () => {
     return `${prop.blok.justify}`;

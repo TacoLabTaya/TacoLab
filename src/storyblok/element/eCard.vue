@@ -6,7 +6,8 @@
     ]">
     <div class="eCard-top" @click="toggleSwitch" >
       <div class="eCard-title">
-        <StoryblokComponent v-for="blok in blok.title" :key="blok._uid" :blok="blok"/>
+        <StoryblokComponent v-for="blok in blok.title" :key="blok._uid" :blok="blok" class="eCard-title-content"/>
+        <StoryblokComponent v-for="blok in blok.backgroundTitle" :key="blok._uid" :blok="blok" class="eCard-title-background"/>
       </div>
       <font-awesome-icon 
         icon="circle-plus" 
@@ -17,31 +18,45 @@
         ]">
       </font-awesome-icon>
     </div>
-    <div v-if="isOpen" class="eCard-text">
-      <StoryblokComponent v-for="blok in blok.text" :key="blok._uid" :blok="blok"/>
-    </div>
+    <transition>
+      <div v-if="isOpen" class="eCard-text">
+        <StoryblokComponent v-for="blok in blok.text" :key="blok._uid" :blok="blok" class="eCard-text-content"/>
+        <StoryblokComponent v-for="blok in blok.backgroundText" :key="blok._uid" :blok="blok" class="eCard-text-background"/>
+      </div>
+    </transition>
     <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="eCard-background"/>
   </div>
 </template>
 
 <script setup>
   const prop = defineProps({ blok: Object });
+  const get4Position = (pos) => {
+    if( pos == null || pos.ison === false) return "0%";
+    const u = pos.unit == null ? '%' : pos.unit;
+    return`${pos.top}${u} ${pos.right}${u} ${pos.bottom}${u} ${pos.left}${u}`;
+  };
   const marginSP = computed( () => {
-    if( prop.blok.marginSP == null || prop.blok.marginSP.ison === false) {return "0%"};
-    return `${prop.blok.marginSP.top}% ${prop.blok.marginSP.right}% ${prop.blok.marginSP.bottom}% ${prop.blok.marginSP.left}%`;
+    return get4Position(prop.blok.marginSP);
   } );
   const paddingSP = computed( () => {
-    if( prop.blok.paddingSP == null || prop.blok.paddingSP.ison === false) {return "0%"};
-    return `${prop.blok.paddingSP.top}% ${prop.blok.paddingSP.right}% ${prop.blok.paddingSP.bottom}% ${prop.blok.paddingSP.left}%`;
+    return get4Position(prop.blok.paddingSP);
   } );
   const marginPC = computed( () => {
-    if( prop.blok.marginPC == null || prop.blok.marginPC.ison === false) {return "0%"};
-    return `${prop.blok.marginPC.top}% ${prop.blok.marginPC.right}% ${prop.blok.marginPC.bottom}% ${prop.blok.marginPC.left}%`;
+    return get4Position(prop.blok.marginPC);
   } );
   const paddingPC = computed( () => {
-    if( prop.blok.paddingPC == null || prop.blok.paddingPC.ison === false) {return "0%"};
-    return `${prop.blok.paddingPC.top}% ${prop.blok.paddingPC.right}% ${prop.blok.paddingPC.bottom}% ${prop.blok.paddingPC.left}%`;
+    return get4Position(prop.blok.paddingPC);
   } );
+
+  const middleMargin = computed( () => {
+    if( prop.blok.middlemargin == null ) return '0rem';
+    return `${prop.blok.middlemargin}rem`;
+  } );
+  const childMargin = computed( () => {
+    if( prop.blok.childmargin == null ) return '0rem';
+    return `${prop.blok.childmargin}rem`;
+  } );
+
 
   const isExpand = computed( () => {
     if( prop.blok.expand == null ) return false;
@@ -77,7 +92,18 @@
     display:flex;
     align-items:center;
     position:relative;
-    .eCard-title { width:100%; }
+    .eCard-title {
+      width:100%;
+      position:relative;
+      z-index: 0;
+      .eCard-title-background{
+        position:absolute;
+        z-index:-1;
+      }
+      .eCard-title-content + .eCard-title-content{
+        margin-top: v-bind(childMargin);
+      }
+    }
     .eCard-switch{
       position:absolute;
       right:0;
@@ -85,12 +111,28 @@
     }
   }
   .eCard-text {
+    position:relative;
     z-index: 1;
+    .eCard-text-background{
+      position:absolute;
+      z-index:-1;
+    }
+    .eCard-text-content + .eCard-text-content{
+      margin-top: v-bind(childMargin);
+    }
   }
   .eCard-background{
     position:absolute;
     z-index:-1;
   }
+  .eCard-top + .eCard-text{
+    margin-top: v-bind(middleMargin)
+  }
+
+
+
+
+
 
   .eCard-switch { 
     transition: var(--s-bpm-1) 
