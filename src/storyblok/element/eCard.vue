@@ -14,7 +14,6 @@
           blok.switch != null && blok.switch != ''? `eCard-switch-${blok.switch}`: 'eCard-switch-plus',
         ]">
         <span>+</span>
-        {{isOpen?'open':'close'}}
       </div>
     </div>
     <div v-if="isOpen" class="eCard-text">
@@ -50,7 +49,6 @@
 
   const isOpen = ref(!isExpand);
   const toggleSwitch = () => {
-    console.log(`toggle ${isExpand.value} ${isOpen.value}`);
     if(isExpand.value) {isOpen.value = !isOpen.value};
   };
   const openSwitch = () => {
@@ -87,12 +85,15 @@
     z-index:-1;
   }
 
-
-  .eCard-expand-open .eCard-switch-plus{
-    @include acco-bttn-plus--open();
+  .eCard-switch { span{
+    display:inline-block;
+    transition: var(--s-bpm-1) 
+  }}
+  &.eCard-expand-open .eCard-switch-plus{
+    span{transform: rotate(585deg);} 
   }
-  .eCard-expand-close .eCard-switch-plus{
-    @include acco-bttn-plus--close();
+  &.eCard-expand-close .eCard-switch-plus{
+    span{transform: rotate(0deg); } 
   }
 
 }
