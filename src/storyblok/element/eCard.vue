@@ -8,13 +8,14 @@
       <div class="eCard-title">
         <StoryblokComponent v-for="blok in blok.title" :key="blok._uid" :blok="blok"/>
       </div>
-      <div v-if="isExpand" 
+      <font-awesome-icon 
+        icon="circle-plus" 
+        v-if="isExpand"
         :class="[
           'eCard-switch', 
           blok.switch != null && blok.switch != ''? `eCard-switch-${blok.switch}`: 'eCard-switch-plus',
         ]">
-        <span>+</span>
-      </div>
+      </font-awesome-icon>
     </div>
     <div v-if="isOpen" class="eCard-text">
       <StoryblokComponent v-for="blok in blok.text" :key="blok._uid" :blok="blok"/>
@@ -74,8 +75,14 @@
   .eCard-top{
     z-index:1;
     display:flex;
-    .eCard-title { flex:1; }
-    .eCard-switch{ flex:0; }
+    align-items:center;
+    position:relative;
+    .eCard-title { width:100%; }
+    .eCard-switch{
+      position:absolute;
+      right:0;
+      width:1.6em;
+    }
   }
   .eCard-text {
     z-index: 1;
@@ -85,15 +92,14 @@
     z-index:-1;
   }
 
-  .eCard-switch { span{
-    display:inline-block;
+  .eCard-switch { 
     transition: var(--s-bpm-1) 
-  }}
+  }
   &.eCard-expand-open .eCard-switch-plus{
-    span{transform: rotate(585deg);} 
+    transform: rotate(585deg);
   }
   &.eCard-expand-close .eCard-switch-plus{
-    span{transform: rotate(0deg); } 
+    transform: rotate(0deg);
   }
 
 }
