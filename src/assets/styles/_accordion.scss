@@ -1,0 +1,39 @@
+/* 開閉ボタン*/
+@mixin acco-bttn-base--base{
+    position: relative;
+    &::after{
+        font-family: "Font Awesome 5 Free";
+        
+        font-weight: 900;
+        position: absolute;
+        right: 0.5rem;
+        font-size: 1em;
+        transition: 1s;
+    }
+}
+@mixin acco-bttn-base--close{
+    @include acco-bttn-base--base;
+}
+@mixin acco-bttn-base--open($dg:585deg){
+    @include acco-bttn-base--base;
+    &::after{ 
+        transform: rotate($dg); 
+    }
+}
+/* + マーク */
+@mixin acco-bttn-plus--close{
+    @include acco-bttn-base--close;
+    &::after{ content: '\f067'; } // + 
+}
+@mixin acco-bttn-plus--open{
+    @include acco-bttn-base--open(585deg);
+}
+/* > マーク */
+@mixin acco-bttn-arrow--close{
+    @include acco-bttn-base--close;
+    
+    &::after{ transition: 0.2s ; content: '\f054'; } // >
+}
+@mixin acco-bttn-arrow--open{
+    @include acco-bttn-base--open(90deg);
+}
