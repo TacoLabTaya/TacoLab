@@ -81,6 +81,7 @@
     element.style.height = `auto`;
     /* eslint-enable */
     const { height } = getComputedStyle(element);
+    console.log(`heyhey ${height}`);
     /* eslint-disable no-param-reassign */
     element.style.width = null;
     element.style.position = null;
@@ -90,7 +91,7 @@
     // Force repaint to make sure the
     // animation is triggered correctly.
     // eslint-disable-next-line no-unused-expressions
-    getComputedStyle(element).height;
+    window.getComputedStyle(element).height;
     return height
   }
 
