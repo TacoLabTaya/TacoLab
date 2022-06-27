@@ -69,16 +69,16 @@
 
   onMounted(() => {
     hideHeight = getElementHeight(hide.value);
+    if (hideHeight == 0) {hideHeight = 'auto';}
   })  ;
   
-
   const getElementHeight = (element) => {
     const { width } = window.getComputedStyle(element);
     /* eslint-disable no-param-reassign */
     element.style.width = width;
     element.style.position = `absolute`;
     element.style.visibility = `hidden`;
-    //element.style.height = `auto`;
+    element.style.height = `auto`;
     /* eslint-enable */
     const { height } = window.getComputedStyle(element);
     console.log(`heyhey ${height} ${width}`);
