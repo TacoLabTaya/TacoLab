@@ -72,6 +72,7 @@
     if(isExpand.value) {isOpen.value = ture};
   };
 </script>
+
 <style lang="scss" >
 @import "@/assets/styles/_accordion.scss";
 .eCard{
