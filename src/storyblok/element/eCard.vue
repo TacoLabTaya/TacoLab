@@ -73,15 +73,15 @@
   
 
   const getElementHeight = (element) => {
-    const { width } = getComputedStyle(element);
+    const { width } = window.getComputedStyle(element);
     /* eslint-disable no-param-reassign */
     element.style.width = width;
     element.style.position = `absolute`;
     element.style.visibility = `hidden`;
     //element.style.height = `auto`;
     /* eslint-enable */
-    const { height } = getComputedStyle(element);
-    console.log(`heyhey ${height}`);
+    const { height } = window.getComputedStyle(element);
+    console.log(`heyhey ${height} ${width}`);
     /* eslint-disable no-param-reassign */
     element.style.width = null;
     element.style.position = null;
@@ -95,7 +95,6 @@
     window.getComputedStyle(element).height;
     return height
   }
-
   const setSwitch = (flag) => {
     if(isExpand.value) { isOpen.value = flag }
     hide.value.style.height  = isOpen.value ? hideHeight : 0;
