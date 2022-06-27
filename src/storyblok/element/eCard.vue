@@ -66,8 +66,13 @@
   const isOpen = ref(!isExpand);
   const hide = ref(null)
   var hideHeight = 0;
+
   onMounted(() => {
-    const element = hide.value;
+    hideHeight = getElementHeight(hide.value);
+  })  ;
+  
+
+  const getElementHeight = (element) => {
     const { width } = getComputedStyle(element);
     /* eslint-disable no-param-reassign */
     element.style.width = width;
@@ -86,13 +91,8 @@
     // animation is triggered correctly.
     // eslint-disable-next-line no-unused-expressions
     getComputedStyle(element).height;
-    hideHeight = height;
-    //console.log(hideHeight);
-    
-    
-    //console.log(`hide height ${hideHeight}`);
-  })  ;
-  
+    return height
+  }
 
   const setSwitch = (flag) => {
     if(isExpand.value) { isOpen.value = flag }
@@ -189,8 +189,8 @@
     transition: var(--s-bpm-1);
     overflow-y:hidden;
   }
-  //&.eCard-expand-open { .eCard-text{  height:100%; }}
-  //&.eCard-expand-close{ .eCard-text{  height:  0%; }}
+  &.eCard-expand-open { .eCard-text{  height:v-bind(hideHeight); }}
+  &.eCard-expand-close{ .eCard-text{  height:0px; }}
 
 }
 </style>
