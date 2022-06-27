@@ -78,7 +78,7 @@
     element.style.width = width;
     element.style.position = `absolute`;
     element.style.visibility = `hidden`;
-    element.style.height = `auto`;
+    //element.style.height = `auto`;
     /* eslint-enable */
     const { height } = getComputedStyle(element);
     console.log(`heyhey ${height}`);
@@ -87,6 +87,7 @@
     element.style.position = null;
     element.style.visibility = null;
     element.style.height = 0;
+    element.style.margin = 0;
     /* eslint-enable */
     // Force repaint to make sure the
     // animation is triggered correctly.
@@ -189,6 +190,7 @@
   .eCard-text{
     transition: var(--s-bpm-1);
     overflow-y:hidden;
+    //height:auto;
   }
   &.eCard-expand-open { .eCard-text{  height:v-bind(hideHeight); }}
   &.eCard-expand-close{ .eCard-text{  height:0px; }}
