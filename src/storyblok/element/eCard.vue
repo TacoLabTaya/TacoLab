@@ -19,7 +19,7 @@
       </font-awesome-icon>
     </div>
     <transition name="eCard-expand">
-      <div v-show="isOpen" class="eCard-text" ref="hide">
+      <div v-show="true" class="eCard-text" ref="hide">
         <StoryblokComponent v-for="blok in blok.text" :key="blok._uid" :blok="blok" class="eCard-text-content"/>
         <StoryblokComponent v-for="blok in blok.backgroundText" :key="blok._uid" :blok="blok" class="eCard-text-background"/>
       </div>
@@ -62,14 +62,52 @@
     if( prop.blok.expand == null ) return false;
     return prop.blok.expand;
   } );
+
   const isOpen = ref(!isExpand);
   const hide = ref(null)
+  var hideHeight = 0;
+  onMounted(() => {
+    const element = hide.value;
+    const { width } = getComputedStyle(element);
+    /* eslint-disable no-param-reassign */
+    element.style.width = width;
+    element.style.position = `absolute`;
+    element.style.visibility = `hidden`;
+    element.style.height = `auto`;
+    /* eslint-enable */
+    const { height } = getComputedStyle(element);
+    /* eslint-disable no-param-reassign */
+    element.style.width = null;
+    element.style.position = null;
+    element.style.visibility = null;
+    element.style.height = 0;
+    /* eslint-enable */
+    // Force repaint to make sure the
+    // animation is triggered correctly.
+    // eslint-disable-next-line no-unused-expressions
+    getComputedStyle(element).height;
+    hideHeight = height;
+    //console.log(hideHeight);
+    
+    
+    //console.log(`hide height ${hideHeight}`);
+  })  ;
+  
+
+  const setSwitch = (flag) => {
+    if(isExpand.value) { isOpen.value = flag }
+    hide.value.style.height  = isOpen.value ? hideHeight : 0;
+    hide.value.style.margin  = isOpen.value ? null : 0;
+    hide.value.style.padding = isOpen.value ? null : 0;
+  }
   const toggleSwitch = () => {
-    if(isExpand.value) {isOpen.value = !isOpen.value};
-    //console.log(hide.getBoundingClientRect());
+    setSwitch(!isOpen.value);
   };
   const openSwitch = () => {
-    if(isExpand.value) {isOpen.value = ture};
+    setSwitch(true);
+  };
+  const appearOpen = () => {
+    setSwitch(true);
   };
 </script>
 
@@ -150,12 +188,9 @@
   .eCard-text{
     transition: var(--s-bpm-1);
     overflow-y:hidden;
-    &.eCard-expand-enter-active{
-      height:100%;
-    }
-    &.eCard-expand-leave-active{
-      height: 0;
-    }
   }
+  //&.eCard-expand-open { .eCard-text{  height:100%; }}
+  //&.eCard-expand-close{ .eCard-text{  height:  0%; }}
+
 }
 </style>
