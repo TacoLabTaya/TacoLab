@@ -68,6 +68,7 @@
   var hideHeight = 0;
 
   onMounted(() => {
+    console.log(window.getComputedStyle(hide.value));
     hideHeight = getElementHeight(hide.value);
     if (hideHeight == 0) {hideHeight = 'auto';}
   })  ;
