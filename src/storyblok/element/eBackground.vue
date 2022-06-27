@@ -3,7 +3,7 @@
     v-if="blok.modestyle!=''" 
     v-appear="'APPEAR'"
     :class="[
-      'eBack',
+      'eBack' ,
       blok.modestyle != null && blok.modestyle   != '' ? `eBack-${blok.modestyle.mode}`    : '',
       blok.modestyle != null && blok.modestyle   != '' ? `eBack-${blok.modestyle.style}`   : '',
       blok.colorset  != null && blok.colorset    != '' ? `eBack-colorset-${blok.colorset}` : '',
@@ -12,7 +12,6 @@
     ]"
   />
 </template>
-
 <script setup>
   const prop = defineProps({ blok: Object });
   const get4Position = (pos) => {
@@ -25,6 +24,7 @@
   } );
   const insetPC = computed( () => {
     return get4Position(prop.blok.positionsPC);
+    //console.log();
   } );
   const point = computed( () => {
     if( prop.blok.modestyle == null || prop.blok.modestyle.size == null) return "1";

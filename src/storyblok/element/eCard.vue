@@ -62,7 +62,6 @@
     if( prop.blok.expand == null ) return false;
     return prop.blok.expand;
   } );
-
   const isOpen = ref(!isExpand);
   const hide = ref(null)
   const toggleSwitch = () => {
@@ -73,7 +72,6 @@
     if(isExpand.value) {isOpen.value = ture};
   };
 </script>
-
 <style lang="scss" >
 @import "@/assets/styles/_accordion.scss";
 .eCard{
