@@ -18,8 +18,8 @@
         ]">
       </font-awesome-icon>
     </div>
-    <transition>
-      <div v-if="isOpen" class="eCard-text">
+    <transition name="eCard-expand">
+      <div v-show="isOpen" class="eCard-text" ref="hide">
         <StoryblokComponent v-for="blok in blok.text" :key="blok._uid" :blok="blok" class="eCard-text-content"/>
         <StoryblokComponent v-for="blok in blok.backgroundText" :key="blok._uid" :blok="blok" class="eCard-text-background"/>
       </div>
@@ -64,8 +64,10 @@
   } );
 
   const isOpen = ref(!isExpand);
+  const hide = ref(null)
   const toggleSwitch = () => {
     if(isExpand.value) {isOpen.value = !isOpen.value};
+    //console.log(hide.getBoundingClientRect());
   };
   const openSwitch = () => {
     if(isExpand.value) {isOpen.value = ture};
@@ -144,5 +146,17 @@
     transform: rotate(0deg);
   }
 
+
+
+  .eCard-text{
+    transition: var(--s-bpm-1);
+    overflow-y:hidden;
+    &.eCard-expand-enter-active{
+      height:100%;
+    }
+    &.eCard-expand-leave-active{
+      height: 0;
+    }
+  }
 }
 </style>
