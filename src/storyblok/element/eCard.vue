@@ -70,7 +70,7 @@
   onMounted(() => {
     console.log(window.getComputedStyle(hide.value));
     hideHeight = getElementHeight(hide.value);
-    if (hideHeight == 0) {hideHeight = 'auto';}
+    if (hideHeight == '0px') {hideHeight = 'auto';}
   })  ;
   
   const getElementHeight = (element) => {
