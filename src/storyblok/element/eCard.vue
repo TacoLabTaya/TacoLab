@@ -72,6 +72,7 @@
     // on netlify it cant get height 
     hideHeight = getElementHeight(hide.value);
     if (hideHeight == '0px') {hideHeight = 'auto';}
+    hideHeight = 'auto';
   })  ;
   
   const getElementHeight = (element) => {
@@ -88,8 +89,8 @@
     element.style.width = null;
     element.style.position = null;
     element.style.visibility = null;
-    //element.style.height = 0;
-    //element.style.margin = 0;
+    element.style.height = 0;
+    element.style.margin = 0;
     /* eslint-enable */
     // Force repaint to make sure the
     // animation is triggered correctly.
