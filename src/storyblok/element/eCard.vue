@@ -86,6 +86,7 @@
   const setSwitch = (flag) => {
     if(isExpand.value) { isOpen.value = flag }
     if(flag == false && rowHeight == 999) { rowHeight = getEleHigh(hide.value); }
+    if(rowHeight == 0) {rowHeight = 999; console.log(`cant get height ${rowHeight}`);}
     hide.value.style.maxHeight  = isOpen.value ? `${rowHeight*2}px` : 0;
     hide.value.style.margin     = isOpen.value ? null : 0;
   }
