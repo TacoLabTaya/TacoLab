@@ -4,9 +4,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     beforeMount(el, binding, vnode) {
       //el.style.background = binding.value
       var time = Date.now();
-      var classname = 'pAppear-ap';
-      if(binding.value != null && binding.value != ''){
-        classname = binding.value;
+      var classtag = 'pAppear-ap';
+      var callback = () => {};
+      if(binding.value != null && binding.value != {}){
+        if(binding.value.cl != null) classtag = binding.value.cl;
+        if(binding.value.fn != null) callback = binding.value.fn;
       }
       const throttle = function(fn , delay) {
         return function() { 
@@ -18,10 +20,12 @@ export default defineNuxtPlugin((nuxtApp) => {
       };
       const checkAppear = () => {
         if(isInScreen(el)){
-          el.classList.add(classname);
+          el.classList.add(classtag);
+          callback();
         }
         else{
-          el.classList.remove(classname);
+          el.classList.remove(classtag);
+          callback();
         }
       };   
       window.addEventListener('scroll', throttle(checkAppear, 100));
@@ -29,15 +33,22 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
     
     updated(el, binding, vnode) {
-      var classname = 'pAppear-ap';
+      var classtag = 'pAppear-ap';
+      var callback = () => {};
+      if(binding.value != null && binding.value != {}){
+        if(binding.value.cl != null) classtag = binding.value.cl;
+        if(binding.value.fn != null) callback = binding.value.fn;
+      }
       if(binding.value != null && binding.value != ''){
-        classname = binding.value;
+        classtag = binding.value;
       }
       if(isInScreen(el)){
-        el.classList.add(classname);
+        el.classList.add(classtag);
+        callback();
       }
       else{
-        el.classList.remove(classname);
+        el.classList.remove(classtag);
+        callback();
       }
     }
   })

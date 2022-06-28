@@ -1,7 +1,7 @@
 <template>
   <div 
-    v-if="blok.modestyle!=''" 
-    v-appear="'APPEAR'"
+    v-if="blok.modestyle!=''"
+        v-appear="{ cl: 'APPEAR' }"
     :class="[
       'eBack' ,
       blok.modestyle != null && blok.modestyle   != '' ? `eBack-${blok.modestyle.mode}`    : '',

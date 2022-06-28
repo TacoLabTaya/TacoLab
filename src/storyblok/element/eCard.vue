@@ -3,7 +3,9 @@
       'eCard',
       {'eCard-expand':blok.expand},
       isOpen ? 'eCard-expand-open': 'eCard-expand-close',
-    ]">
+    ]"
+    v-appear="{ cl: 'APPEAR' }"
+    >
     <div class="eCard-top" @click="toggleSwitch" >
       <div class="eCard-title">
         <StoryblokComponent v-for="blok in blok.title" :key="blok._uid" :blok="blok" class="eCard-title-content"/>
@@ -74,6 +76,7 @@
   })  ;
 
   const getEleHigh = (elm) => {
+    if(elm == null) return 0;
     elm.style.transition = 0;
     elm.style.width = 'auto';
     elm.style.height = 'auto';
@@ -87,6 +90,7 @@
     if(isExpand.value) { isOpen.value = flag }
     if(flag == false && rowHeight == 999) { rowHeight = getEleHigh(hide.value); }
     if(rowHeight == 0) {rowHeight = 999; console.log(`cant get height ${rowHeight}`);}
+    if(hide.value == null ) {return null}
     hide.value.style.maxHeight  = isOpen.value ? `${rowHeight*2}px` : 0;
     hide.value.style.margin     = isOpen.value ? null : 0;
   }

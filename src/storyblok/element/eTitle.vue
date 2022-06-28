@@ -18,7 +18,7 @@
         :data-text="word"
         :key="word"
         :class="['eTitle-word']"
-        v-appear="'APPEAR'"
+        v-appear="{ cl: 'APPEAR' }"
       >
         {{word}}
       </span>
