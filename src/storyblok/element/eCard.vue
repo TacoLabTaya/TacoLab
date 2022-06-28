@@ -68,7 +68,8 @@
   var hideHeight = 0;
 
   onMounted(() => {
-    console.log(window.getComputedStyle(hide.value));
+    //console.log(window.getComputedStyle(hide.value));
+    // on netlify it cant get height 
     hideHeight = getElementHeight(hide.value);
     if (hideHeight == '0px') {hideHeight = 'auto';}
   })  ;
@@ -87,8 +88,8 @@
     element.style.width = null;
     element.style.position = null;
     element.style.visibility = null;
-    element.style.height = 0;
-    element.style.margin = 0;
+    //element.style.height = 0;
+    //element.style.margin = 0;
     /* eslint-enable */
     // Force repaint to make sure the
     // animation is triggered correctly.
@@ -98,6 +99,8 @@
   }
   const setSwitch = (flag) => {
     if(isExpand.value) { isOpen.value = flag }
+    console.log(`heyhey ${hideHeight}`);
+    // on netlify it cant work
     hide.value.style.height  = isOpen.value ? hideHeight : 0;
     hide.value.style.margin  = isOpen.value ? null : 0;
     hide.value.style.padding = isOpen.value ? null : 0;
@@ -192,8 +195,22 @@
     overflow-y:hidden;
     //height:auto;
   }
-  &.eCard-expand-open { .eCard-text{  height:v-bind(hideHeight); }}
-  &.eCard-expand-close{ .eCard-text{  height:0px; }}
+  &.eCard-expand-open { .eCard-text{  
+    //height:v-bind(hideHeight);
+  }}
+  &.eCard-expand-close{ .eCard-text{
+    //height:0px;
+    /*
+    *{
+      margin:0;
+      padding:0;
+      line-height:0;
+      opacity:0;
+    }
+    margin:0;
+    padding:0;
+    */
+  }}
 
 }
 </style>
