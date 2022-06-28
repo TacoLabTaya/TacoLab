@@ -69,7 +69,7 @@
 
   onMounted(() => {
     rowHeight = getEleHigh(hide.value);
-    if (rowHeight == 0) {rowHeight = 99999;}
+    if (rowHeight == 0) {rowHeight = 999;}
     if (isExpand.value) {setSwitch(false);}
   })  ;
 
