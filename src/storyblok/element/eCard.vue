@@ -65,46 +65,28 @@
 
   const isOpen = ref(!isExpand);
   const hide = ref(null)
-  var hideHeight = 0;
+  var rowHeight = 0;
 
   onMounted(() => {
-    //console.log(window.getComputedStyle(hide.value));
-    // on netlify it cant get height 
-    hideHeight = getElementHeight(hide.value);
-    if (hideHeight == '0px') {hideHeight = 'auto';}
-    hideHeight = 'auto';
+    rowHeight = getEleHigh(hide.value);
+    if (rowHeight == 0) {rowHeight = 99999;}
+    if (isExpand.value) {setSwitch(false);}
   })  ;
-  
-  const getElementHeight = (element) => {
-    const { width } = window.getComputedStyle(element);
-    /* eslint-disable no-param-reassign */
-    element.style.width = width;
-    element.style.position = `absolute`;
-    element.style.visibility = `hidden`;
-    element.style.height = `auto`;
-    /* eslint-enable */
-    const { height } = window.getComputedStyle(element);
-    console.log(`heyhey ${height} ${width}`);
-    /* eslint-disable no-param-reassign */
-    element.style.width = null;
-    element.style.position = null;
-    element.style.visibility = null;
-    element.style.height = 0;
-    element.style.margin = 0;
-    /* eslint-enable */
-    // Force repaint to make sure the
-    // animation is triggered correctly.
-    // eslint-disable-next-line no-unused-expressions
-    window.getComputedStyle(element).height;
-    return height
+
+  const getEleHigh = (elm) => {
+    elm.style.transition = 0;
+    elm.style.width = 'auto';
+    elm.style.height = 'auto';
+    const { height, width } = window.getComputedStyle(elm);
+    elm.style.transition = null;
+    elm.style.width = null;
+    elm.style.height = null;
+    return parseInt(height);
   }
   const setSwitch = (flag) => {
     if(isExpand.value) { isOpen.value = flag }
-    console.log(`heyhey ${hideHeight}`);
-    // on netlify it cant work
-    hide.value.style.height  = isOpen.value ? hideHeight : 0;
-    hide.value.style.margin  = isOpen.value ? null : 0;
-    hide.value.style.padding = isOpen.value ? null : 0;
+    hide.value.style.maxHeight  = isOpen.value ? `${rowHeight*2}px` : 0;
+    hide.value.style.margin     = isOpen.value ? null : 0;
   }
   const toggleSwitch = () => {
     setSwitch(!isOpen.value);
@@ -194,23 +176,10 @@
   .eCard-text{
     transition: var(--s-bpm-1);
     overflow-y:hidden;
-    //height:auto;
   }
   &.eCard-expand-open { .eCard-text{  
-    //height:v-bind(hideHeight);
   }}
   &.eCard-expand-close{ .eCard-text{
-    //height:0px;
-    /*
-    *{
-      margin:0;
-      padding:0;
-      line-height:0;
-      opacity:0;
-    }
-    margin:0;
-    padding:0;
-    */
   }}
 
 }
