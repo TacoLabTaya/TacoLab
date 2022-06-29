@@ -20,11 +20,11 @@ export default defineNuxtPlugin((nuxtApp) => {
       };
       const checkAppear = () => {
         if(isInScreen(el)){
-          el.classList.add(classtag);
+          if(el != null) el.classList.add(classtag);
           callback();
         }
         else{
-          el.classList.remove(classtag);
+          if(el != null) el.classList.remove(classtag);
           callback();
         }
       };   
@@ -39,15 +39,12 @@ export default defineNuxtPlugin((nuxtApp) => {
         if(binding.value.cl != null) classtag = binding.value.cl;
         if(binding.value.fn != null) callback = binding.value.fn;
       }
-      if(binding.value != null && binding.value != ''){
-        classtag = binding.value;
-      }
       if(isInScreen(el)){
-        el.classList.add(classtag);
+        if(el != null) el.classList.add(classtag);
         callback();
       }
       else{
-        el.classList.remove(classtag);
+        if(el != null) el.classList.remove(classtag);
         callback();
       }
     }
