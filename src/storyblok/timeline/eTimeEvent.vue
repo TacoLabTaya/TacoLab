@@ -1,13 +1,15 @@
 <template>
-  <picture class="eImage">
-  </picture>
+  <div class="eTimeEvent">
+    event
+    {{prop.blok.at}}
+  </div>
 </template>
 
 <script setup>
-defineProps({ blok: Object });
+const prop = defineProps({ blok: Object });
 </script>
 
 <style lang="scss" scoped>
-.eImage{
+.eTimeEvent{
 }
 </style>
