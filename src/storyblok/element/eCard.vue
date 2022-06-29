@@ -8,7 +8,9 @@
     >
     <div class="eCard-top" @click="toggleSwitch" >
       <div class="eCard-title">
-        <StoryblokComponent v-for="blok in blok.title" :key="blok._uid" :blok="blok" class="eCard-title-content"/>
+        <slot name="title">
+          <StoryblokComponent v-for="blok in blok.title" :key="blok._uid" :blok="blok" class="eCard-title-content"/>
+        </slot>
         <StoryblokComponent v-for="blok in blok.backgroundTitle" :key="blok._uid" :blok="blok" class="eCard-title-background"/>
       </div>
       <font-awesome-icon 
@@ -22,7 +24,9 @@
     </div>
     <transition name="eCard-expand">
       <div v-show="true" class="eCard-text" ref="hide">
-        <StoryblokComponent v-for="blok in blok.text" :key="blok._uid" :blok="blok" class="eCard-text-content"/>
+        <slot name="content">
+          <StoryblokComponent v-for="blok in blok.text" :key="blok._uid" :blok="blok" class="eCard-text-content"/>
+        </slot>
         <StoryblokComponent v-for="blok in blok.backgroundText" :key="blok._uid" :blok="blok" class="eCard-text-background"/>
       </div>
     </transition>

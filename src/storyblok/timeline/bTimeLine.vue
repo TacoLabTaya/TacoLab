@@ -7,6 +7,8 @@
         :blok="bl"
         :baseBlock="baseBlock"
         :baseTitle="baseTitle"
+        :baseSub  ="baseSub"
+        :baseCard ="baseCard"
       />
     </bSheet>
   </div>
@@ -18,6 +20,8 @@
   const baseSheet = prop.blok.baseSheet != null ? prop.blok.baseSheet[0] : {};
   const baseBlock = prop.blok.baseBlock != null ? prop.blok.baseBlock[0] : {};
   const baseTitle = prop.blok.baseTitle != null ? prop.blok.baseTitle[0] : {};
+  const baseSub   = prop.blok.baseSub   != null ? prop.blok.baseSub[0]   : {};
+  const baseCard  = prop.blok.baseCard  != null ? prop.blok.baseCard[0]  : {};
 
 
 </script>

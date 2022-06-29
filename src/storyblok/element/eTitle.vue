@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-  const prop = defineProps({ blok: Object });
+  const prop = defineProps({ blok: Object, text:{ type:String ,default:''} });
   const headelem = computed(() => {
     switch(prop.blok.headline){
       case 'h1':
@@ -44,6 +44,7 @@
     };
   });
   const words = computed( () => {
+    if(prop.text != '') return prop.text.split('\n');
     return prop.blok.text.split('\n');
   } );
 </script>

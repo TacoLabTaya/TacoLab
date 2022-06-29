@@ -4,9 +4,10 @@
       `mShadow-d${blok.shadow}`,
       { 'mSheet-childmargin': blok.childmargin !=null }
     ]">
-    <slot />
-    <StoryblokComponent v-for="blok in blok.contents" :key="blok._uid" :blok="blok" class="bSheet-contents"/>
-    <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
+    <slot>
+      <StoryblokComponent v-for="blok in blok.contents" :key="blok._uid" :blok="blok" class="bSheet-contents"/>
+      <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
+    </slot>
   </div>
 </template>
 
