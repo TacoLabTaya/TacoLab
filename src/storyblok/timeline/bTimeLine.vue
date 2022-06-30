@@ -1,6 +1,6 @@
 <template>
   <div class="bTimeLine">
-    <bSheet :blok="baseSheet" >
+    <bSheet :blok="baseSheet" class="bTimeLine-block">
       <bTimeBlock 
         v-for="bl in prop.blok.blocks"
         :key="bl._uid"
@@ -23,10 +23,17 @@
   const baseSub   = prop.blok.baseSub   != null ? prop.blok.baseSub[0]   : {};
   const baseCard  = prop.blok.baseCard  != null ? prop.blok.baseCard[0]  : {};
 
+  const childmargin = computed( () => {
+    if(baseSheet === {} || baseSheet.childmargin == null) return '1rem';
+    return `${baseSheet.childmargin}rem`;
+  } );
 
 </script>
 
 <style lang="scss" scoped>
 .bTimeLine{
+  .bTimeLine-block + .bTimeLine-block {
+    margin-top: v-bind(childmargin);
+  }
 }
 </style>

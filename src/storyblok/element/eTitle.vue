@@ -51,7 +51,7 @@
 
 <style lang="scss" scoped>
 
-//@import "@/assets/styles/_shadow.scss";
+@import "@/assets/styles/_shadow.scss";
 @import "@/assets/styles/_typography.scss";
 @import "@/assets/styles/_appear.scss";
 
@@ -63,6 +63,8 @@
       font-weight:v-bind(weight);
       */
     }
+    
+
     
     &.eTitle-left   {text-align:left  }
     &.eTitle-right  {text-align:right }
