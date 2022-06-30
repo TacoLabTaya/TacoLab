@@ -6,8 +6,8 @@
     ]">
     <slot>
       <StoryblokComponent v-for="blok in blok.contents" :key="blok._uid" :blok="blok" class="bSheet-contents"/>
-      <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
     </slot>
+    <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
   </div>
 </template>
 
@@ -24,10 +24,18 @@
         return 'auto';
     }
   } );
+  
+  const maxWidth = computed( () => {
+    return (prop.blok.maxWidth == null || prop.blok.maxWidth == 0) ? '': `${prop.blok.maxWidth}px`;
+  });
   const get4Position = (pos) => {
     if( pos == null || pos.ison === false) return "0%";
     const u = pos.unit == null ? '%' : pos.unit;
-    return`${pos.top}${u} ${pos.right}${u} ${pos.bottom}${u} ${pos.left}${u}`;
+    const valt = (pos.sett == null || pos.sett ) ? `${pos.top}${u}`   : 'auto' ;
+    const valr = (pos.setr == null || pos.setr ) ? `${pos.right}${u}` : 'auto';
+    const vall = (pos.setl == null || pos.setl ) ? `${pos.left}${u}`: 'auto';
+    const valb = (pos.setb == null || pos.setb ) ? `${pos.bottom}${u}`  : 'auto';
+    return `${valt} ${valr} ${valb} ${vall}`;
   };
   const marginSP = computed( () => {
     return get4Position(prop.blok.marginSP);
@@ -54,6 +62,7 @@
 .bSheet{
   height:100vh;
   height:v-bind(height);
+  max-width: v-bind(maxWidth);
   @include mq('SHORT'){ 
     margin :v-bind(marginSP);
     padding:v-bind(paddingSP);
