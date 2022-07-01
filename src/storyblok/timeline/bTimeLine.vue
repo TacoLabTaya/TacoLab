@@ -1,6 +1,6 @@
 <template>
   <div class="bTimeLine">
-    <bSheet :blok="baseSheet" class="bTimeLine-block">
+    <bSheet :blok="baseSheet" class="bTimeLine-blocklist">
       <bTimeBlock 
         v-for="bl in prop.blok.blocks"
         :key="bl._uid"
@@ -9,6 +9,7 @@
         :baseTitle="baseTitle"
         :baseSub  ="baseSub"
         :baseCard ="baseCard"
+        :class="'bTimeLine-block'"
       />
     </bSheet>
   </div>
@@ -32,8 +33,10 @@
 
 <style lang="scss" scoped>
 .bTimeLine{
-  .bTimeLine-block + .bTimeLine-block {
-    margin-top: v-bind(childmargin);
+  .bTimeLine-blocklist{
+    .bTimeLine-block + .bTimeLine-block {
+      margin-top: v-bind(childmargin);
+    }
   }
 }
 </style>

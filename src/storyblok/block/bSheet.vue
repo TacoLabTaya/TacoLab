@@ -84,56 +84,30 @@
     return `${prop.blok.layout.gap.x}px ${prop.blok.layout.gap.y}px`;
   } );
 
-
-  const container = ref(null);
-  const rowGap = computed( () => {
-    if(prop.blok.layout == null) return 0;
-    return parseInt(prop.blok.layout.gap.y);
-  } );
   const rowHeight = computed( () => {
     return 10;
   } );
 
-
-  var timeId = 0;
-  const gMasonryObserver = new ResizeObserver((entries) => {
-    entries.forEach((e) => { gMasonryObserver.unobserve(e.target); });
-    entries.forEach((e) => {
-      resizeSpan(e.target);
-    });
-    entries.forEach((e) => { gMasonryObserver.observe(e.target); });
-  })
-
+  const columnNumber = computed( () => {
+    if(prop.blok.layout == null) return {sp:1,tb:2,pc:3,xl:4};
+    return {
+      sp: prop.blok.layout.number.sp,
+      tb: prop.blok.layout.number.tb,
+      pc: prop.blok.layout.number.pc,
+      xl: prop.blok.layout.number.xl,
+    };
+  } );
+  const columnNumberXS = computed( () => { return columnNumber.value.sp });
+  const columnNumberSP = computed( () => { return columnNumber.value.sp });
+  const columnNumberTB = computed( () => { return columnNumber.value.tb });
+  const columnNumberPC = computed( () => { return columnNumber.value.pc });
+  const columnNumberXL = computed( () => { return columnNumber.value.xl });
   /*
-  onMounted(() => {
-    if(prop.blok.layout != null && prop.blok.layout.layout === 'gMasonry'){
-      for( const item of container.value.children ){
-        resizeSpan(item);
-        gMasonryObserver.observe(item);
-      };
-    }
-  });
-    */
-
-  /*
-  const resizeSpan = (elm) => {
-    if(elm == null){ console.log("null elm");  return 0;}
-
-    const { height } = elm.getBoundingClientRect();
-    //const { height } = window.getComputedStyle(elm);
-    //const iHeight = elm.getBoundingClientRect().height + rowGap.value;
-    const iHeight = parseInt(height) + rowGap.value;
-    const rowSpan = Math.ceil(iHeight / (rowGap.value + rowHeight.value));
-
-    console.log(`sett  ${rowSpan} = ${iHeight} / (${rowGap.value} + ${rowHeight.value})`);
-    elm.style['grid-row-end'] = `span ${rowSpan}`;
-    window.getComputedStyle(elm);
+  const calcSpan = (column) => {
+    return column === 1 ? 1 
   }
-  
-  onUpdated(() => {
-    console.log('updated')
-  })
   */
+
 
 </script>
 
@@ -155,23 +129,16 @@
   position:relative;
   z-index: 0;
   .bSheet-contents{
-    //position:static;
     z-index:1;
   }
   .bSheet-background{
     position:absolute;
     z-index:-1;
-    //top:0;right:0;bottom:0;left:0; set in child
   }
   &.mSheet-childmargin > .bSheet-contents + .bSheet-contents {
     margin-top: v-bind(childmargin);
   }
 
-/*
-  display:flex;
-  flex-direction: column;
-  justify-content: v-bind(justify);
-*/  
   &.mSheet-layout-fRow,&.mSheet-layout-fWrwap,&.mSheet-layout-fColumn{
     display:flex;
   }
@@ -182,13 +149,25 @@
   &.mSheet-layout-gMasonry,&.mSheet-layout-gMasonryRow,&.mSheet-layout-gTile{
     display:grid;
     grid-gap:v-bind(gridGap);
+    @include mq('xs'){ grid-template-columns:repeat(v-bind(columnNumberXS),1fr); }
+    @include mq('sp'){ grid-template-columns:repeat(v-bind(columnNumberSP),1fr); }
+    @include mq('tb'){ grid-template-columns:repeat(v-bind(columnNumberTB),1fr); }
+    @include mq('pc'){ grid-template-columns:repeat(v-bind(columnNumberPC),1fr); }
+    @include mq('xl'){ grid-template-columns:repeat(v-bind(columnNumberXL),1fr); }
   }
   &.mSheet-layout-gMasonry{
-    //grid: masonry / repeat(auto-fit, minmax(2em, 1fr));
-    //grid-gap: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+    //grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
     grid-auto-rows: v-bind(rowHeight);
-    grid-auto-flow: row dense;
+    //grid-auto-flow: row dense;
+    @for $i from 1 through 99 {
+      >*:nth-child(#{$i}){
+        @include mq('xs'){ grid-row: #{$i} / span v-bind(columnNumberXS); }
+        @include mq('sp'){ grid-row: #{$i} / span v-bind(columnNumberSP); }
+        @include mq('tb'){ grid-row: #{$i} / span v-bind(columnNumberTB); }
+        @include mq('pc'){ grid-row: #{$i} / span v-bind(columnNumberPC); }
+        @include mq('xl'){ grid-row: #{$i} / span v-bind(columnNumberXL);; }
+      }
+    }
   }
   &.mSheet-layout-fRow,&.mSheet-layout-fWrwap,&.mSheet-layout-fColumn,
   &.mSheet-layout-gMasonry,&.mSheet-layout-gMasonryRow,&.mSheet-layout-gTile{

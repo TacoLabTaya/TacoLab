@@ -1,10 +1,19 @@
 <template>
   <bSheet :blok="prop.baseBlock" class="bTimeBlock">
-    <eTitle
-      :class="['bTimeBlock-title','bTimeBlock-child']"
-      :blok="prop.baseTitle"
-      :text="titleText"
-    />
+    <div
+      :class="['bTimeBlock-first','bTimeBlock-child']"
+    >
+      <eTitle
+        :class="['bTimeBlock-years']"
+        :blok="prop.baseTitle"
+        :text="`${prop.blok.end} - ${prop.blok.start}`"
+      />
+      <eTitle
+        :class="['bTimeBlock-title']"
+        :blok="prop.baseTitle"
+        :text="prop.blok.title"
+      />
+    </div>
     <p :class="['bTimeBlock-descr','bTimeBlock-child']">
       {{prop.blok.description}}
     </p>
@@ -27,9 +36,6 @@
     baseSub  :Object, 
     baseCard :Object
   });
-  const titleText = computed( () => {
-    return `${prop.blok.end}\n${prop.blok.title}`;
-  } );
   const childmargin = computed( () => {
     if(prop.baseBlock === {} || prop.baseBlock.childmargin == null) return '1rem';
     return `${prop.baseBlock.childmargin}rem`;
@@ -38,6 +44,15 @@
 
 <style lang="scss" scoped>
   .bTimeBlock{
+    .bTimeBlock-first{
+      .bTimeBlock-years{
+        font-size:1.5em;
+      }
+      .bTimeBlock-title{}
+    }
+    .bTimeBlock-descr{}
+    .bTimeBlock-event{}
+
     .bTimeBlock-child + .bTimeBlock-child{
       margin-top:v-bind(childmargin);
     }
