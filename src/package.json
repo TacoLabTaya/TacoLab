@@ -15,6 +15,7 @@
   "dependencies": {
     "@storyblok/nuxt": "^4.0.1",
     "axios": "^0.21.4",
-    "sass": "^1.52.1"
+    "sass": "^1.52.1",
+    "vue-resize-observer": "^2.0.15"
   }
 }
