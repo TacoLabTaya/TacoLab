@@ -70,7 +70,12 @@
   });
   const styleset = computed( () => {
     var style = {};
+    if( prop.content.type =='text' ){
+      style['font-size'] = '0.8em'; 
+    }
+
     if( prop.content.marks == null ) return style;
+      style['font-size'] = null; 
 
     if( prop.content.marks.find( mark => mark.type != null && mark.type == 'bold') != undefined ){
         style['font-weight'] = 'bold';

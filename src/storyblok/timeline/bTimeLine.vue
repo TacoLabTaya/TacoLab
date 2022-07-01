@@ -25,7 +25,8 @@
   const baseCard  = prop.blok.baseCard  != null ? prop.blok.baseCard[0]  : {};
 
   const childmargin = computed( () => {
-    if(baseSheet === {} || baseSheet.childmargin == null) return '1rem';
+    if(baseSheet === {} || baseSheet.childmargin == null) return '0rem';
+    if(baseSheet.layout.layout === 'gMasonry') return '0rem';
     return `${baseSheet.childmargin}rem`;
   } );
 

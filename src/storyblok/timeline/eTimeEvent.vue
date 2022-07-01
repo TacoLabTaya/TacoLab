@@ -8,9 +8,14 @@
         />
       </template>
       <template #content>
-        <p>
+        <p v-if="prop.blok.description != null">
           <span>{{prop.blok.description}}</span>
         </p>
+        <eText 
+          v-for="bl in blok.detail" 
+          :key="bl._uid" 
+          :blok="bl"
+        />
       </template>
     </eCard>
   </div>
