@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-//import { ResizeObserver }from 'resize-observer-polyfill'
-//import { ResizeObserver } from 'resize-observer';
   const prop = defineProps({ blok: Object });
   const height = computed( () => {
     switch(prop.blok.height.style){

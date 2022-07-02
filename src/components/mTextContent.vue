@@ -118,7 +118,7 @@
   })
   const onClick = (e) => {
     if(isLink){
-        console.log(toLink);
+        console.log(toLink.value);
     }
   }
 </script>

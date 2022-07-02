@@ -57,6 +57,7 @@
       .bTimeBlock-title{}
     }
     .bTimeBlock-descr{}
+    .bTimeBlock-detail{ font-size:1.2em; }
     .bTimeBlock-event{}
 
     .bTimeBlock-child + .bTimeBlock-child{
