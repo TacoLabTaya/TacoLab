@@ -23,10 +23,22 @@
   const childmargin = computed( () => {
     return `${prop.blok.childmargin}rem`;
   } );
+
+  const widthPC = computed( () => { 
+    if( prop.blok.widthPC == null ) return '100%';
+    return `${prop.blok.widthPC.value}%`;
+  });
+  const widthSP = computed( () => { 
+    if( prop.blok.widthPC == null ) return '100%';
+    return `${prop.blok.widthPC.value}%`;
+  });
 </script>
 
 <style lang="scss" >
   .eText{
+    @include mq('SHORT'){width:v-bind(widthSP);}
+    @include mq('LARGE'){width:v-bind(widthPC);}
+
     &.eText-left   {text-align:left  }
     &.eText-right  {text-align:right }
     &.eText-center {text-align:center}

@@ -31,6 +31,15 @@
       :baseCard ="prop.baseCard"
        :class="['bTimeBlock-event','bTimeBlock-child']"
     />
+    <div :class="['bTimeBlock-marks','bTimeBlock-child']" >
+      <eButton        
+        v-for="mark in markList"
+        :blok="prop.baseMark"
+        :data-text="mark"
+        :key="mark">
+        {{mark}}
+      </eButton>
+    </div>
   </bSheet>
 </template>
 
@@ -40,12 +49,17 @@
     baseBlock:Object, 
     baseTitle:Object, 
     baseSub  :Object, 
-    baseCard :Object
+    baseCard :Object, 
+    baseMark :Object
   });
   const childmargin = computed( () => {
     if(prop.baseBlock === {} || prop.baseBlock.childmargin == null) return '1rem';
     return `${prop.baseBlock.childmargin}rem`;
   } );
+  const markList = computed( () => {
+    if( prop.blok.marks == null || prop.blok.marks == '') return []
+    return prop.blok.marks.split('\n');
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -59,6 +73,10 @@
     .bTimeBlock-descr{}
     .bTimeBlock-detail{ font-size:1.2em; }
     .bTimeBlock-event{}
+    .bTimeBlock-marks{
+      font-size:0.9em;
+      span+span{margin-left:0.2em;}
+    }
 
     .bTimeBlock-child + .bTimeBlock-child{
       margin-top:v-bind(childmargin);

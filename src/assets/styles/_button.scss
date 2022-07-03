@@ -1,0 +1,14 @@
+@mixin button-base($cDeco:(0,100%,100%), $cText:(0,0%,0%)){
+    display: inline-block;
+    font-weight: bold;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+    padding: 0.5em 0.5em;
+    //margin: 0.2em 0.2em;
+    border-radius: 0.2em;
+    background-color: hsl($cDeco);
+    color: hsl($cText);
+}
+@mixin button-metal($cDeco-l:(0,100%,100%),$cDeco-d:(0,100%,100%), $cText:(0,0%,0%)){
+    @include button-base($cDeco-d,$cText);
+    background: linear-gradient(to bottom,hsl($cDeco-d) 0%,hsl($cDeco-l) 100%);
+}

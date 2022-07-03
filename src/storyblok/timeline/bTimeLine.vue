@@ -9,6 +9,7 @@
         :baseTitle="baseTitle"
         :baseSub  ="baseSub"
         :baseCard ="baseCard"
+        :baseMark ="baseMark"
         :class="'bTimeLine-block'"
       />
     </bSheet>
@@ -23,6 +24,7 @@
   const baseTitle = prop.blok.baseTitle != null ? prop.blok.baseTitle[0] : {};
   const baseSub   = prop.blok.baseSub   != null ? prop.blok.baseSub[0]   : {};
   const baseCard  = prop.blok.baseCard  != null ? prop.blok.baseCard[0]  : {};
+  const baseMark  = prop.blok.baseMark  != null ? prop.blok.baseMark[0]  : {};
 
   const childmargin = computed( () => {
     if(baseSheet === {} || baseSheet.childmargin == null) return '0rem';

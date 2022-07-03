@@ -144,8 +144,9 @@
     margin-top: v-bind(childmargin);
   }
 
-  &.mSheet-layout-fRow,&.mSheet-layout-fWrwap,&.mSheet-layout-fColumn{
+  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fColumn{
     display:flex;
+    gap:v-bind(gridGap);
   }
   &.mSheet-layout-fRow   { flex-direction:row; }
   &.mSheet-layout-fWrap  { flex-direction:row; flex-wrap:wrap}
@@ -154,13 +155,13 @@
   &.mSheet-layout-gMasonry,&.mSheet-layout-gMasonryRow,&.mSheet-layout-gTile{
     display:grid;
     grid-gap:v-bind(gridGap);
-    /*
+    
     @include mq('xs'){ grid-template-columns:v-bind(gridColumnsXS); }
     @include mq('sp'){ grid-template-columns:v-bind(gridColumnsSP); }
     @include mq('tb'){ grid-template-columns:v-bind(gridColumnsTB); }
     @include mq('pc'){ grid-template-columns:v-bind(gridColumnsPC); }
     @include mq('xl'){ grid-template-columns:v-bind(gridColumnsXL); }
-    */
+    
     //grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
   }
   &.mSheet-layout-gMasonry{
