@@ -15,10 +15,13 @@ defineProps({ blok: Object });
 
 <style lang="scss" scoped>
 .bHeader{
+  background:hsl(var(--c-main));
+  color:hsl(var(--c-base));
   width: 100%;
   display:flex;
   justify-content: space-between;
   align-items: center;
+  height:3rem;
   .bHeader-left{
     .bHeader-logo{
       width: 3rem;

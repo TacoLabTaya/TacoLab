@@ -75,7 +75,9 @@
     .bTimeBlock-event{}
     .bTimeBlock-marks{
       font-size:0.9em;
-      span+span{margin-left:0.2em;}
+      display:flex;
+      flex-wrap:wrap;
+      gap: 5px;
     }
 
     .bTimeBlock-child + .bTimeBlock-child{

@@ -26,10 +26,10 @@ const radius = computed( () => {
 .eImage{
   @include mq('SHORT'){width:v-bind(widthSP);}
   @include mq('LARGE'){width:v-bind(widthPC);}
-  border-radius: v-bind(radius);
   overflow:hidden;
 
   .eImage-src{
+  border-radius: v-bind(radius);
     width:100%;
   }
 }
