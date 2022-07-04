@@ -59,3 +59,22 @@
         animation: metalgrad_180 $sec 1 linear;
     }
 }
+
+
+@mixin flame-metal-02($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$sPoint){
+    @include flame-backgrad-01($cBack-l,$cBack-d);
+    
+    &::before{
+        position: absolute;
+        content: "";
+        left:0;right:0;bottom:0;
+        height:5px;
+        --angle: 0deg;
+        background:linear-gradient(
+                var(--angle),
+                hsl($cBack-d) 20%,
+                hsl($cMetal-l) 50%,
+                hsl($cBack-d) 80%
+            );
+    }
+}

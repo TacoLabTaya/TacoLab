@@ -12,7 +12,8 @@ defineProps({ blok: Object });
 .bFooter{
   background:hsl(var(--c-main));
   color:hsl(var(--c-base));
-  height:3rem;
+  height:6rem;
+  font-weight:bold;
   display:flex;
   justify-content:center;
   align-items: center;

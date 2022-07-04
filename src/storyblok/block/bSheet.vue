@@ -144,9 +144,11 @@
     margin-top: v-bind(childmargin);
   }
 
-  &.mSheet-layout-fRow,&.mSheet-layout-fWrap{
+  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fColumn{
     display:flex;
     gap:v-bind(gridGap);
+  }
+  &.mSheet-layout-fWrap{
     @include mq('xs'){ >:not(.bSheet-background){width:v-bind(itemWidthXS);} }
     @include mq('sp'){ >:not(.bSheet-background){width:v-bind(itemWidthSP);} }
     @include mq('tb'){ >:not(.bSheet-background){width:v-bind(itemWidthTB);} }
