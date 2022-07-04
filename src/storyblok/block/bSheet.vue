@@ -108,11 +108,11 @@
   const gridColumnsPC = computed(  () =>  { return fr.repeat(columnNumberPC.value) });
   const gridColumnsXL = computed(  () =>  { return fr.repeat(columnNumberXL.value) });
 
-  const itemWidthXS = computed(  () =>  { return `${100 / columnNumberXS.value }%`;});
-  const itemWidthSP = computed(  () =>  { return `${100 / columnNumberSP.value }%`;});
-  const itemWidthTB = computed(  () =>  { return `${100 / columnNumberTB.value }%`;});
-  const itemWidthPC = computed(  () =>  { return `${100 / columnNumberPC.value }%`;});
-  const itemWidthXL = computed(  () =>  { return `${100 / columnNumberXL.value }%`;});
+  const itemWidthXS = computed(  () =>  { return `${98 / columnNumberXS.value }%`;});
+  const itemWidthSP = computed(  () =>  { return `${98 / columnNumberSP.value }%`;});
+  const itemWidthTB = computed(  () =>  { return `${98 / columnNumberTB.value }%`;});
+  const itemWidthPC = computed(  () =>  { return `${98 / columnNumberPC.value }%`;});
+  const itemWidthXL = computed(  () =>  { return `${98 / columnNumberXL.value }%`;});
 
 </script>
 
@@ -144,9 +144,14 @@
     margin-top: v-bind(childmargin);
   }
 
-  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fColumn{
+  &.mSheet-layout-fRow,&.mSheet-layout-fWrap{
     display:flex;
     gap:v-bind(gridGap);
+    @include mq('xs'){ >:not(.bSheet-background){width:v-bind(itemWidthXS);} }
+    @include mq('sp'){ >:not(.bSheet-background){width:v-bind(itemWidthSP);} }
+    @include mq('tb'){ >:not(.bSheet-background){width:v-bind(itemWidthTB);} }
+    @include mq('pc'){ >:not(.bSheet-background){width:v-bind(itemWidthPC);} }
+    @include mq('xl'){ >:not(.bSheet-background){width:v-bind(itemWidthXL);} }
   }
   &.mSheet-layout-fRow   { flex-direction:row; }
   &.mSheet-layout-fWrap  { flex-direction:row; flex-wrap:wrap}
