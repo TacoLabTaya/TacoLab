@@ -78,6 +78,10 @@
     if (rowHeight == 0) {rowHeight = 999;}
     if (isExpand.value) {setSwitch(false);}
   })  ;
+  onUpdated(() => {
+    console.log(`updated`);
+    console.log(window.getComputedStyle(hide.value));
+  });
 
   const getEleHigh = (elm) => {
     if(elm == null) return 0;
@@ -85,12 +89,14 @@
     elm.style.width = 'auto';
     elm.style.height = 'auto';
     const { height, width } = window.getComputedStyle(elm);
+    console.log(window.getComputedStyle(elm));
     elm.style.transition = null;
     elm.style.width = null;
     elm.style.height = null;
     return parseInt(height);
   }
   const setSwitch = (flag) => {
+    console.log(`set switch`);
     if(isExpand.value) { isOpen.value = flag }
     if(flag == false && rowHeight == 999) { rowHeight = getEleHigh(hide.value); }
     if(rowHeight == 0) {rowHeight = 999; console.log(`cant get height ${rowHeight}`);}
