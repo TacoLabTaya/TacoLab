@@ -6,6 +6,7 @@
             'mTextContent',
             styledclass != `mTextContent-styled-${styledclass}` ? '' :'',
             `mTextContent-display-${display}`,
+            { 'mTextContent-link': isLink},
         ]"
         @click="onClick"
     >
@@ -18,7 +19,10 @@
     </component>
 </template>
 <script setup>
+  import { useRouter } from 'vue-router'
   const prop = defineProps({ content: Object });
+  const router = useRouter();
+
   const elem = computed( () => {
     if(prop.content.type == null) return 'span';
     switch (prop.content.type){
@@ -107,7 +111,7 @@
   const toLink = computed( () => {
     if( prop.content.marks == null ) return null;
     var mark = prop.content.marks.find( mark => mark.type != null && mark.type == 'link')
-    if( mark != undefined ){
+    if( mark == undefined ){
         return null;
     }
     return {
@@ -117,8 +121,26 @@
     };
   })
   const onClick = (e) => {
-    if(isLink){
-        console.log(toLink.value);
+    if(isLink.value){
+        //this.$router.push(toLink.value.href);
+        //console.log(toLink.value);
+        if(toLink.value.href.startsWith('https://')){
+          //window.open(toLink.value.href);        }
+          window.location.href = toLink.value.href;
+        }
+        else{
+          router.push(toLink.value.href);
+        }
     }
   }
 </script>
+
+
+<style lang="scss" >
+  .mTextContent{
+    &.mTextContent-link{
+      color: var(--c-acce);
+      text-decoration:underline;    
+    }
+  }
+</style>
