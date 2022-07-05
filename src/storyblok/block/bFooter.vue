@@ -13,6 +13,7 @@ defineProps({ blok: Object });
   background:hsl(var(--c-main));
   color:hsl(var(--c-base));
   height:6rem;
+  margin-top:2rem;
   font-weight:bold;
   display:flex;
   justify-content:center;

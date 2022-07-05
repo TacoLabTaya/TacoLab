@@ -1,7 +1,7 @@
 <template>
 
   <mFontJp
-    :blok="blok.font" 
+    :blok="fontset" 
     :headelem="headelem"
     :class="[
       'eTitle',
@@ -47,6 +47,10 @@
     if(prop.text != '') return prop.text.split('\n');
     return prop.blok.text.split('\n');
   } );
+  const fontset = computed( () => {
+    if(prop.blok.font == null) return {ison:false};
+    return prop.blok.font;
+  } );
 </script>
 
 <style lang="scss" scoped>
@@ -58,10 +62,6 @@
   .eTitle{
     .eTitle-word{
       display:inline-block;
-      /*
-      font-size:v-bind(emsize);
-      font-weight:v-bind(weight);
-      */
     }
     
 

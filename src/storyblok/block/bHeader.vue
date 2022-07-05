@@ -19,14 +19,7 @@ defineProps({ blok: Object });
 <style lang="scss" scoped>
 @import "@/assets/styles/background/_gradient.scss";
 @import "@/assets/styles/background/_flame.scss";
-@mixin setDecoTexture($b,$d){
-    --c-back  :var(#{$b});
-    --c-back-d:var(#{$b}-d);
-    --c-back-l:var(#{$b}-l);
-    --c-deco  :var(#{$d});
-    --c-deco-d:var(#{$d}-d);
-    --c-deco-l:var(#{$d}-l);
-}
+
 .bHeader{
   z-index:0;
   .bHeader-main{
@@ -40,27 +33,34 @@ defineProps({ blok: Object });
     display:flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 0.5rem;
 
     .bHeader-left{
       .bHeader-logo{
-        width: 5rem;
+        width: 4rem;
         padding: 0.5rem;
-        --angle: 0deg;
-        background:linear-gradient(
-                var(--angle),
-                hsl(var(--c-deco-d)) 20%,
-                hsl(var(--c-back-l)) 50%,
-                hsl(var(--c-deco-d)) 80%
-            );
+        filter: 
+          drop-shadow(1px 1px 0px   hsla(var(--c-base) ,0.8))
+          drop-shadow(-1px -1px 0px hsla(var(--c-base) ,0.8))
+          drop-shadow(1px -1px 0px  hsla(var(--c-base) ,0.8))
+          drop-shadow(-1px 1px 0px  hsla(var(--c-base) ,0.8));
       }
     }
   }
   .bHeader-base,.bHeader-main{
     width: 100%;
-    height:6rem;
+    height:5rem;
   }
 }
 
+@mixin setDecoTexture($b,$d){
+    --c-back  :var(#{$b});
+    --c-back-d:var(#{$b}-d);
+    --c-back-l:var(#{$b}-l);
+    --c-deco  :var(#{$d});
+    --c-deco-d:var(#{$d}-d);
+    --c-deco-l:var(#{$d}-l);
+}
 .bHeader{
   .bHeader-main{
     @include setDecoTexture(--c-base,--c-main);
