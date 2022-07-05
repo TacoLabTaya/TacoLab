@@ -14,7 +14,7 @@
     baseTitle:Object, 
   });
   const onClick = (e) => {
-    console.log(prop.blok.link.cached_url);
+    //console.log(prop.blok.link.cached_url);
     router.push(prop.blok.link.cached_url);
   }
 

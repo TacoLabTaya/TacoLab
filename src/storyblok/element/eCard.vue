@@ -74,15 +74,26 @@
   var rowHeight = 0;
 
   onMounted(() => {
+    //console.log(`onMounted`);
+    //console.log(window.getComputedStyle(hide.value).height);
     rowHeight = getEleHigh(hide.value);
     if (rowHeight == 0) {rowHeight = 999;}
     if (isExpand.value) {setSwitch(false);}
   })  ;
-  onUpdated(() => {
-    //console.log(`updated`);
-    //console.log(window.getComputedStyle(hide.value));
+  onBeforeUpdate(() => {
+    //console.log(`onBeforeUpdate isopen ${isOpen.value}`);
+    //console.log(window.getComputedStyle(hide.value).height);
+    if( rowHeight === 999 && isOpen.value === false ){
+      rowHeight = getEleHigh(hide.value);
+      if (rowHeight == 0) {rowHeight = 999;}
+    }
   });
-
+  /*
+  onUpdated(() => {
+    console.log(`onUpdated isopen ${isOpen.value}`);
+    console.log(window.getComputedStyle(hide.value).height);
+  });
+  */
   const getEleHigh = (elm) => {
     if(elm == null) return 0;
     elm.style.transition = 0;
@@ -93,6 +104,7 @@
     elm.style.transition = null;
     elm.style.width = null;
     elm.style.height = null;
+    if(height==='' || height==='0') return 0;
     return parseInt(height);
   }
   const setSwitch = (flag) => {
@@ -101,7 +113,7 @@
     if(flag == false && rowHeight == 999) { rowHeight = getEleHigh(hide.value); }
     if(rowHeight == 0) {rowHeight = 999; console.log(`cant get height ${rowHeight}`);}
     if(hide.value == null ) {return null}
-    hide.value.style.maxHeight  = isOpen.value ? `${rowHeight*2}px` : 0;
+    hide.value.style.maxHeight  = isOpen.value ? `${rowHeight*3}px` : 0;
     hide.value.style.margin     = isOpen.value ? null : 0;
   }
   const toggleSwitch = () => {
@@ -149,7 +161,8 @@
     }
     .eCard-switch{
       position:absolute;
-      right:0;
+      width:1em;
+      right:1rem;
       width:1.6em;
     }
   }

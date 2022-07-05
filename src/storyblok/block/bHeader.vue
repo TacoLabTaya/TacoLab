@@ -2,7 +2,13 @@
   <div class="bHeader">
     <div class="bHeader-main">
       <div class="bHeader-left">
-          <StoryblokComponent v-for="blok in blok.logo" :key="blok._uid" :blok="blok" class="bHeader-logo"/>
+          <StoryblokComponent 
+            v-for="blok in blok.logo"
+            :key="blok._uid"
+            :blok="blok"
+            class="bHeader-logo"
+            @click="onClick"
+          />
       </div>
       <div  class="bHeader-right">
           <StoryblokComponent v-for="blok in blok.navi" :key="blok._uid" :blok="blok" />
@@ -13,7 +19,11 @@
 </template>
 
 <script setup>
-defineProps({ blok: Object });
+  const router = useRouter();
+  const prop = defineProps({ blok: Object });
+  const onClick = (e) => {
+    router.push('/');
+  }
 </script>
 
 <style lang="scss" scoped>

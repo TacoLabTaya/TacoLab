@@ -12,3 +12,21 @@
     @include button-base($cDeco-d,$cText);
     background: linear-gradient(to bottom,hsl($cDeco-d) 0%,hsl($cDeco-l) 100%);
 }
+
+@mixin button-metal($cDeco-l:(0,100%,100%),$cDeco-d:(0,100%,100%), $cText:(0,0%,0%)){
+    @include button-base($cDeco-d,$cText);
+    background: linear-gradient(to bottom,hsl($cDeco-d) 0%,hsl($cDeco-l) 100%);
+}
+
+@mixin button-border($cDeco-d:(0,100%,100%),$cText-d:(0,100%,100%), $cText:(0,0%,0%)){
+    @include button-base($cDeco-d,$cText);
+    border: 2px solid hsl($cText-d);
+    position:relative;
+    &::after{
+        content: '\f0a9';
+        position:absolute;
+        right: calc(1em - 2px);
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+}

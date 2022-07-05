@@ -26,12 +26,12 @@
 
   const widthPC = computed( () => { 
     if( prop.blok.widthPC == null ) return '100%';
-    if( prop.blok.widthPC == '0'  ) return 'auto';
+    if( prop.blok.widthPC.value == '0'  ) return 'auto';
     return `${prop.blok.widthPC.value}%`;
   });
   const widthSP = computed( () => { 
-    if( prop.blok.widthPC == null ) return '100%';
-    if( prop.blok.widthSP == '0'  ) return 'auto';
+    if( prop.blok.widthSP == null ) return '100%';
+    if( prop.blok.widthSP.value == '0'  ) return 'auto';
     return `${prop.blok.widthSP.value}%`;
   });
 </script>
