@@ -29,7 +29,7 @@
     return true;
   } );
   const onClick = (e) => {
-    console.log('onClick')
+    //console.log('onClick')
     if(isLink.value){
       router.push(prop.blok.link.cached_url);
     }
