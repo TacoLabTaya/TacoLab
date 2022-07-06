@@ -35,7 +35,6 @@
     }
   }
 </script>
-
 <style lang="scss" >
 @import "@/assets/styles/_shadow.scss";
 @import "@/assets/styles/_button.scss";
