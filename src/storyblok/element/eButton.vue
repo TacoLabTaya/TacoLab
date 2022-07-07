@@ -31,8 +31,15 @@
   const onClick = (e) => {
     //console.log('onClick')
     if(isLink.value){
-      router.push(prop.blok.link.cached_url);
-    }
+      switch(prop.blok.link.linktype){
+        case 'story':
+          router.push(prop.blok.link.cached_url);
+          break;
+        case 'url':
+          window.location.href = prop.blok.link.url;
+          break;
+      }
+    } 
   }
 </script>
 <style lang="scss" >

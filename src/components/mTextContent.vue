@@ -125,7 +125,6 @@
         //this.$router.push(toLink.value.href);
         //console.log(toLink.value);
         if(toLink.value.href.startsWith('https://')){
-          //window.open(toLink.value.href);        }
           window.location.href = toLink.value.href;
         }
         else{
