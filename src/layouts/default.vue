@@ -5,6 +5,5 @@
   </MGlobal>
 </template>
 <script setup>
-import MGlobal from '~~/storyblok/modify/mGlobal.vue';
-const global = await useStoryblok('global', { version: 'published' });
+  const global = await useStoryblok('global', { version: 'published' });
 </script>   
