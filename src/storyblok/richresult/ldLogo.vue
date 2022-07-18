@@ -10,16 +10,25 @@ const prop = defineProps({
  });
   useJsonld(() => ({
     '@context': 'https://schema.org',
-    '@type' : 'Organization',
-    name : prop.blok.name!=null ? prop.blok.name : 'name',
-    logo : prop.blok.logo!=null ? prop.blok.logo.filename : '',
-    url : prop.blok.url!=null ? prop.blok.url.url : 'https://',
-    slogan : prop.blok.slogan!=null ? prop.blok.slogan : 'slogan',
-    founder : prop.blok.founder!=null ? prop.blok.founder : 'founder',
-    location : prop.blok.slogan!=null ? prop.blok.location : 'location',
-    description : prop.blok.description!=null ? prop.blok.description : 'description',
-    foundingDate : prop.blok.foundingDate!=null ? prop.blok.foundingDate : 'foundingDate',
-    description : prop.blok.description!=null ? prop.blok.description : 'description',
+    //'@type' : 'Organization',
+    '@type' : prop.blok.type == null? 'Organization': prop.blok.type,
+    name : prop.blok.name==null ? 'name': prop.blok.name,
+    logo : prop.blok.logo==null ? '' : prop.blok.logo.filename,
+    url : prop.blok.url==null ? 'https://' : prop.blok.url.url,
+    slogan : prop.blok.slogan==null ? 'slogan': prop.blok.slogan,
+    founder : prop.blok.founder==null ? 'founder' : {
+      '@context': 'https://schema.org',
+      '@type' : 'Person',
+      name: prop.blok.founder
+    },
+    location : prop.blok.slogan==null ? 'location' : {
+      '@context': 'https://schema.org',
+      '@type' : 'Place',
+      address: prop.blok.location
+    },
+    description : prop.blok.description==null ? 'description' : prop.blok.description,
+    foundingDate : prop.blok.foundingDate==null ? 'foundingDate' : prop.blok.foundingDate,
+    description : prop.blok.description==null ? 'description' : prop.blok.description,
   }));
 </script>
 
