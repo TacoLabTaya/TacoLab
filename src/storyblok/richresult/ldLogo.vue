@@ -10,7 +10,7 @@ const prop = defineProps({
  });
   useJsonld(() => ({
     '@context': 'https://schema.org',
-    '@type' : prop.blok.type!=null ? prop.blok.type : 'Organization',
+    '@type' : 'Organization',
     name : prop.blok.name!=null ? prop.blok.name : 'name',
     logo : prop.blok.logo!=null ? prop.blok.logo.filename : '',
     url : prop.blok.url!=null ? prop.blok.url.url : 'https://',
