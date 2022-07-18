@@ -3,7 +3,10 @@ import { defineNuxtConfig } from 'nuxt'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 
 export default defineNuxtConfig({
-    modules: [['@storyblok/nuxt', { accessToken: 'EZNSIs7JZsIreYZKwB7Zewtt' }]],
+    modules: [
+      ['@storyblok/nuxt', { accessToken: 'EZNSIs7JZsIreYZKwB7Zewtt' }],
+      ['nuxt-jsonld'],
+    ],
     vite: {
         css: {
             preprocessorOptions: {
@@ -17,5 +20,4 @@ export default defineNuxtConfig({
             },
         },
     },
-    //plugins: ['~/plugins/appear.js']
 })

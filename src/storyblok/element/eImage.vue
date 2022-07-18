@@ -2,7 +2,7 @@
   <div  class="eImage">
     <picture class="eImage-pic">
       <source v-if="blok.sourcePC.id" :srcset="blok.sourcePC.filename" media="(min-width: 769px)" class="eImage-src"/>
-      <img :src="blok.source.filename" class="eImage-src"/>
+      <img :src="blok.source.filename" class="eImage-src" alt="image" />
     </picture>
     <p v-if="title != ''" class="eImage-title">{{title}}</p>
   </div>
