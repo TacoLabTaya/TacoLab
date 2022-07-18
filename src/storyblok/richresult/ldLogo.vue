@@ -24,7 +24,7 @@ const prop = defineProps({
     location : prop.blok.slogan==null ? 'location' : {
       '@context': 'https://schema.org',
       '@type' : 'Place',
-      address: prop.blok.location
+      name: prop.blok.location
     },
     description : prop.blok.description==null ? 'description' : prop.blok.description,
     foundingDate : prop.blok.foundingDate==null ? 'foundingDate' : prop.blok.foundingDate,
