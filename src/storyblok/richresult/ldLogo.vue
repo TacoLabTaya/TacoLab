@@ -10,7 +10,6 @@ const prop = defineProps({
  });
   useJsonld(() => ({
     '@context': 'https://schema.org',
-    //'@type' : 'Organization',
     '@type' : prop.blok.type == null? 'Organization': prop.blok.type,
     name : prop.blok.name==null ? 'name': prop.blok.name,
     logo : prop.blok.logo==null ? '' : prop.blok.logo.filename,
@@ -21,14 +20,13 @@ const prop = defineProps({
       '@type' : 'Person',
       name: prop.blok.founder
     },
-    location : prop.blok.slogan==null ? 'location' : {
+    location : prop.blok.location==null ? 'location' : {
       '@context': 'https://schema.org',
       '@type' : 'Place',
       name: prop.blok.location
     },
     description : prop.blok.description==null ? 'description' : prop.blok.description,
     foundingDate : prop.blok.foundingDate==null ? 'foundingDate' : prop.blok.foundingDate,
-    description : prop.blok.description==null ? 'description' : prop.blok.description,
   }));
 </script>
 

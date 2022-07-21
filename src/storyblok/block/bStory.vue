@@ -10,8 +10,14 @@
 </script>
 <script setup>
   const route = useRoute()
-  const prop = defineProps({ blok: Object });
+  const nuxtApp = useNuxtApp()
   const config = useRuntimeConfig();;
+  const prop = defineProps({ 
+    blok: Object,
+    datePub: String,
+    dateMod: String
+  });
+  
   const sitename = config.public.name == null ? 'sitename' : config.public.name;
   const hostname = config.public.host == null ? 'hostname' : config.public.host;
   
@@ -26,31 +32,44 @@
       { name: 'og:type', content: 'article'},
       { name: 'og:title', content: prop.blok.title == null ? 'キーワード' : prop.blok.title,},
       { name: 'og:description', content: prop.blok.description == null ? '説明' : prop.blok.description,},
-      { name: 'og:url', content: `${hostname}/${route.path}`},
+      { name: 'og:url', content: `${hostname}${route.path}`},
       { name: 'og:image', content: prop.blok.eyecatch == null ? '' : prop.blok.eyecatch.filename,},
     ],
     bodyAttrs: {
       class: 'body'
     }
-  })
+  });
 
-  const nuxtApp = useNuxtApp()
-  const isArticle = prop.blok.isArticle == null ? false : prop.blok.isArticle;
-  const auther_id = prop.blok.auther == null ? '' : prop.blok.auther
-  if(isArticle){
-    if(auther_id != ''){
-      const auther = await useStoryblok(auther_id, { find_by:'uuid', version: 'published' });
-      //const auther_ld = new ldPerson(auther);
-      //console.log(auther_ld.getLd());
-      console.log(nuxtApp.$hello('name'))
+
+
+  var ldAuthor = {};
+  var ldPublisher = {};
+  var ldArticle = {};
+  if(prop.blok.isArticle != null && prop.blok.isArticle){
+    if(prop.blok.author != null && prop.blok.author != ''){
+      const author = await useStoryblok(prop.blok.author, { find_by:'uuid', version: 'published' });
+      ldAuthor = nuxtApp.$ldPerson(author.value.content);
     }
+    if(prop.blok.publisher != null && prop.blok.publisher != ''){
+      const publisher = await useStoryblok(prop.blok.publisher, { find_by:'uuid', version: 'published' });
+      ldPublisher = nuxtApp.$ldOrganization(publisher.value.content);
+    }
+    ldArticle =  nuxtApp.$ldArticle(
+      prop.blok,
+      ldAuthor, 
+      ldPublisher,
+      prop.datePub,
+      prop.dateMod,
+      `${hostname}${route.path}`
+    );  
+    console.log(ldArticle);
   }
-  /*
   useJsonld(() => {
-
-
-    return {};
+    return ldArticle;
   })
+  
+  /*
+
   */
 </script>
 
