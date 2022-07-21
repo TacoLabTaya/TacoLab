@@ -1,7 +1,7 @@
 import { defineNuxtPlugin } from '#app'
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.provide('ldPerson', (person) => {
-        console.log(person)
+        //console.log(person)
         return {
             '@context': 'https://schema.org',
             "@type": "Person",
@@ -16,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         };
     });
     nuxtApp.provide('ldOrganization', (org) => {
-        console.log(org)
+        //console.log(org)
         return {
             '@context': 'https://schema.org',
             '@type' : org.type == null? 'Organization': org.type,

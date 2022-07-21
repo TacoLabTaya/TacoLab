@@ -62,7 +62,7 @@
       prop.dateMod,
       `${hostname}${route.path}`
     );  
-    console.log(ldArticle);
+    //console.log(ldArticle);
   }
   useJsonld(() => {
     return ldArticle;
