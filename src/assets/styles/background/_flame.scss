@@ -78,3 +78,29 @@
             );
     }
 }
+
+
+@mixin flame-metal-img($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$sPoint,$imgpath:''){
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+    }
+    &::before{
+        top:   calc(1rem*$sPoint);
+        left:  calc(1rem*$sPoint);
+        right: calc(1rem*$sPoint);
+        bottom:calc(1rem*$sPoint);
+        @include flame-metal-01-base($cBack-l,$cBack-d,$cMetal-l,$cMetal-d);
+    }
+    
+    &::after{
+        top:   calc((1rem*$sPoint) + 0.5rem);
+        left:  calc((1rem*$sPoint) + 0.5rem);
+        right: calc((1rem*$sPoint) + 0.5rem);
+        bottom:calc((1rem*$sPoint) + 0.5rem);
+        background-image: $imgpath;
+        background-size:cover;
+        background-position: center;;
+    }
+}

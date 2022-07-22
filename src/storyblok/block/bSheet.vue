@@ -147,7 +147,7 @@
     margin-top: v-bind(childmargin);
   }
 
-  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fSwitch,&.mSheet-layout-fColumn{
+  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fSwitch,&.mSheet-layout-fSwitchRev,&.mSheet-layout-fColumn{
     display:flex;
     gap:v-bind(gridGap);
   }
@@ -160,6 +160,7 @@
   }
   &.mSheet-layout-fRow   { flex-direction:row; }
   &.mSheet-layout-fSwitch{ @include mq('SHORT'){ flex-direction:column;} @include mq('LARGE'){ flex-direction:row;} }
+  &.mSheet-layout-fSwitchRev{ @include mq('SHORT'){ flex-direction:column;} @include mq('LARGE'){ flex-direction:row-reverse;} }
   &.mSheet-layout-fWrap  { flex-direction:row; flex-wrap:wrap}
   &.mSheet-layout-fColumn{ flex-direction:column; }
 

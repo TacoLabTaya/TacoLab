@@ -1,14 +1,18 @@
 <template>
-  <div  class="eImage">
+  <div  :class="['eImage',
+      blok.modestyle != null && blok.modestyle   != '' ? `eImage-${blok.modestyle.mode}`    : '',
+      blok.modestyle != null && blok.modestyle   != '' ? `eImage-${blok.modestyle.style}`   : '',
+    ]">
     <picture class="eImage-pic">
-      <source v-if="blok.sourcePC.id" :srcset="blok.sourcePC.filename" media="(min-width: 769px)" class="eImage-src"/>
-      <img :src="blok.source.filename" class="eImage-src" alt="image" />
+      <source :srcset="pathPC" media="(min-width: 769px)" class="eImage-src"/>
+      <img :src="pathSP" class="eImage-src" :alt="altStr" />
     </picture>
     <p v-if="title != ''" class="eImage-title">{{title}}</p>
   </div>
 </template>
 
 <script setup>
+const nuxtApp = useNuxtApp();
 const prop = defineProps({ blok: Object });
 
 const widthPC = computed( () => { 
@@ -29,9 +33,34 @@ const title = computed( () => {
   if( prop.blok.title == null ) return '';
   return prop.blok.title;
 });
+const point = computed( () => {
+  if( prop.blok.modestyle == null || prop.blok.modestyle.size == null) return "1";
+  return `${prop.blok.modestyle.size}`;
+});
+const pathSP = computed( () => { 
+  if( prop.blok.source == null ) return '';
+  return nuxtApp.$imagePathResize(prop.blok.source.filename, 500, 0)
+})
+const pathPC = computed( () => { 
+  if( prop.blok.source == null ) return '';
+  return nuxtApp.$imagePathResize(prop.blok.source.filename, 1500, 0)
+})
+const altStr = computed( () => { 
+  if( prop.blok.source == null || prop.blok.source.alt == null ) return 'alt';
+  return prop.blok.source.alt;
+})
+const imageUrlSP = computed( () => { 
+  if( prop.blok.source == null ) return '';
+  return `url("${pathSP.value}")`;
+})
+const imageUrlPC = computed( () => { 
+  if( prop.blok.source == null ) return '';
+  return `url("${pathPC.value}")`;
+})
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/styles/background/_flame.scss";
 .eImage{
   @include mq('SHORT'){width:v-bind(widthSP);}
   @include mq('LARGE'){width:v-bind(widthPC);}
@@ -45,6 +74,20 @@ const title = computed( () => {
     font-size:0.8em;
     margin-top:0.2em;
     text-align:center;
+  }
+
+
+  
+  &.eImage-flame{
+    &.eImage-metal{
+      position:relative;
+      @include mq('SHORT'){
+        @include flame-metal-img(var(--c-main-l),var(--c-main-d),var(--c-base-l),var(--c-base-d),v-bind(point),v-bind(imageUrlSP));
+      }
+      @include mq('LARGE'){
+        @include flame-metal-img(var(--c-main-l),var(--c-main-d),var(--c-base-l),var(--c-base-d),v-bind(point),v-bind(imageUrlPC));
+      }
+    }
   }
 }
 </style>
