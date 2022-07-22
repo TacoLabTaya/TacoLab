@@ -65,9 +65,14 @@ const imageUrlPC = computed( () => {
   @include mq('SHORT'){width:v-bind(widthSP);}
   @include mq('LARGE'){width:v-bind(widthPC);}
   .eImage-pic{
+    width:100%;
+    height:100%;
     .eImage-src{
-    border-radius: v-bind(radius);
+      border-radius: v-bind(radius);
       width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
     }
   }
   .eImage-title{
