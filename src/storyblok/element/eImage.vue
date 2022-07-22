@@ -57,6 +57,10 @@ const imageUrlPC = computed( () => {
   if( prop.blok.source == null ) return '';
   return `url("${pathPC.value}")`;
 })
+const objectfit = computed( () => { 
+  if( prop.blok.objectfit == null ) return 'cover';
+  return prop.blok.objectfit;
+})
 </script>
 
 <style lang="scss" scoped>
@@ -71,7 +75,7 @@ const imageUrlPC = computed( () => {
       border-radius: v-bind(radius);
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:v-bind(objectfit);
       object-position:center;
     }
   }
@@ -87,10 +91,26 @@ const imageUrlPC = computed( () => {
     &.eImage-metal{
       position:relative;
       @include mq('SHORT'){
-        @include flame-metal-img(var(--c-main-l),var(--c-main-d),var(--c-base-l),var(--c-base-d),v-bind(point),v-bind(imageUrlSP));
+        @include flame-metal-img(
+          var(--c-main-l),
+          var(--c-main-d),
+          var(--c-base-l),
+          var(--c-base-d),
+          v-bind(point),
+          v-bind(imageUrlSP),
+          v-bind(objectfit)
+        );
       }
       @include mq('LARGE'){
-        @include flame-metal-img(var(--c-main-l),var(--c-main-d),var(--c-base-l),var(--c-base-d),v-bind(point),v-bind(imageUrlPC));
+        @include flame-metal-img(
+          var(--c-main-l),
+          var(--c-main-d),
+          var(--c-base-l),
+          var(--c-base-d),
+          v-bind(point),
+          v-bind(imageUrlPC),
+          v-bind(objectfit)
+        );
       }
     }
   }

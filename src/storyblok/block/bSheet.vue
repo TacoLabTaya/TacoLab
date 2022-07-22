@@ -190,7 +190,7 @@
       }
     }
   }
-  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fColumn,
+  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fColumn,&.mSheet-layout-fSwitch,&.mSheet-layout-fSwitchRev,
   &.mSheet-layout-gMasonry,&.mSheet-layout-gMasonryRow,&.mSheet-layout-gTile{
     justify-content: v-bind(justifyContent);  
     justify-items  : v-bind(justifyItems);  

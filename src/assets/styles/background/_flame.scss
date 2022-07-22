@@ -80,7 +80,7 @@
 }
 
 
-@mixin flame-metal-img($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$sPoint,$imgpath:''){
+@mixin flame-metal-img($cBack-l,$cBack-d,$cMetal-l,$cMetal-d,$sPoint,$imgpath:'',$ofit:'cover'){
     &::before,
     &::after {
       position: absolute;
@@ -100,7 +100,8 @@
         right: calc((1rem*$sPoint) + 0.5rem);
         bottom:calc((1rem*$sPoint) + 0.5rem);
         background-image: $imgpath;
-        background-size:cover;
+        background-size:$ofit;
+        background-repeat: no-repeat;
         background-position: center;;
     }
 }
