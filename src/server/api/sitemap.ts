@@ -4,6 +4,7 @@ const urls = [
     { loc: 'http://tacolab.tech'        ,lastmod: '2022-07-15', changefreq: 'monthly', priority: '1' },
     { loc: 'http://tacolab.tech/profile',lastmod: '2022-07-15', changefreq: 'monthly', priority: '1' },
     { loc: 'http://tacolab.tech/works'  ,lastmod: '2022-07-15', changefreq: 'monthly', priority: '1' },
+    { loc: 'http://tacolab.tech/story/africa-it-1'  ,lastmod: '2022-07-22', changefreq: 'monthly', priority: '1' },
 ];
 
 export default (req: IncomingMessage, res: ServerResponse) => {

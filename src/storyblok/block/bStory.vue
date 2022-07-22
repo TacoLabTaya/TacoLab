@@ -1,13 +1,17 @@
 <template>
   <div class="bStory">
+    <m1stView 
+      v-if="need1st"
+      :baseSheet="blok.baseSheet[0]"
+      :baseTitle="blok.baseTitle[0]"
+      :baseBack="blok.baseBack[0]"
+      :title="blok.title"
+      :eyecatch=" blok.eyecatch"
+    />
     <StoryblokComponent v-for="blok in blok.body" :key="blok._uid" :blok="blok" />
   </div>
 </template>
 
-
-
-<script>
-</script>
 <script setup>
   const route = useRoute()
   const nuxtApp = useNuxtApp()
@@ -17,12 +21,23 @@
     datePub: String,
     dateMod: String
   });
+
+  const need1st = computed( () => {
+    if( prop.blok.need1st == null || prop.blok.need1st == false) return false;
+    if( prop.blok.baseSheet[0] == null ) return false;
+    if( prop.blok.baseTitle[0] == null ) return false;
+    if( prop.blok.baseBack[0] == null ) return false;
+    if( prop.blok.title == null ) return false;
+    if( prop.blok.eyecatch == null || prop.blok.eyecatch.filename == '') return false;
+    return true;
+  });
+
   
   const sitename = config.public.name == null ? 'sitename' : config.public.name;
   const hostname = config.public.host == null ? 'hostname' : config.public.host;
   
   useHead({
-    title: prop.blok.title == null ? 'ページタイトル': prop.blok.title,
+    title: prop.blok.title == null ? 'ページタイトル': prop.blok.title.replace('\n', ''),
     titleTemplate: (title) => `${sitename} - ${title}`,
     viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     charset: 'utf-8',
@@ -39,8 +54,6 @@
       class: 'body'
     }
   });
-
-
 
   var ldAuthor = {};
   var ldPublisher = {};
@@ -61,16 +74,11 @@
       prop.datePub,
       prop.dateMod,
       `${hostname}${route.path}`
-    );  
-    //console.log(ldArticle);
+    ); 
   }
   useJsonld(() => {
     return ldArticle;
   })
-  
-  /*
-
-  */
 </script>
 
 <style lang="scss" >

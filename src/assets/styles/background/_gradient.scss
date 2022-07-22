@@ -1,7 +1,19 @@
-@mixin grad-circle-01($cBack-l,$cBack-d,$left,$right){
-    background: radial-gradient(
-        circle at $left $right,
-        hsl($cBack-l) 0%,
-        hsl($cBack-d) 60%
-    );
+@mixin grad-circle-01($cBack-l,$cBack-d,$left,$right,$imgpath:''){
+    @if $imgpath == '' {
+        background-image: radial-gradient(
+            circle at $left $right,
+            hsl($cBack-l) 0%,
+            hsl($cBack-d) 60%
+        );
+    }
+    @else {
+        background-image: radial-gradient(
+            circle at $left $right,
+            hsla($cBack-l,0.7) 0%,
+            hsla($cBack-d,0.4) 60%
+        ),
+        $imgpath;
+        background-size:cover;
+        background-position: center;;
+    }
 }

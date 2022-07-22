@@ -8,12 +8,24 @@
       blok.modestyle != null && blok.modestyle   != '' ? `eBack-${blok.modestyle.style}`   : '',
       blok.colorset  != null && blok.colorset    != '' ? `eBack-colorset-${blok.colorset}` : '',
       blok.appear    != null && blok.appear      != '' ? `eBack-appear-${blok.appear}`     : '',
+      {'eBack-withImage'    : withImage},
       {'eBack-anime-living' : blok.living}
     ]"
-  />
+  >
+    <img 
+      v-if="withImage"
+      :src="imagePath"
+      :alt="imgjson.alt"
+      :class="['eBack-img']"
+    />
+  </div>
 </template>
 <script setup>
-  const prop = defineProps({ blok: Object });
+  const nuxtApp = useNuxtApp()
+  const prop = defineProps({ 
+    blok: Object,
+    imgjson: { Type:Object, default:null }
+   });
   const get4Position = (pos) => {
     if( pos == null || pos.ison === false) return "0%";
     const u = pos.unit == null ? '%' : pos.unit;
@@ -29,6 +41,24 @@
   const point = computed( () => {
     if( prop.blok.modestyle == null || prop.blok.modestyle.size == null) return "1";
     return `${prop.blok.modestyle.size}`;
+  });
+  const withImage = computed( () => {
+    return prop.imgjson == null || prop.imgjson.filename == '' ? false: true; 
+  });
+  const imagePath = computed( () => {
+    return prop.imgjson == null || prop.imgjson.filename == '' 
+      ? ''
+      : nuxtApp.$imagePath(prop.imgjson.filename); 
+  });
+  const imageUrl = computed( () => {
+    return prop.imgjson == null || prop.imgjson.filename == '' 
+      ? ''
+      : `url('${nuxtApp.$imagePath(prop.imgjson.filename)}')`; 
+  });
+  const imageUrlGray = computed( () => {
+    return prop.imgjson == null || prop.imgjson.filename == '' 
+      ? ''
+      : `url('${nuxtApp.$imagePathGray(prop.imgjson.filename)}')`; 
   });
 </script>
 
@@ -47,6 +77,13 @@
 
 
   .eBack{
+
+    .eBack-img {
+      width:100%;
+      object-fit: cover;
+      height: 100%;
+    }
+    
     @include mq('SHORT'){ 
       inset :v-bind(insetSP);
     }
@@ -103,7 +140,12 @@
       &.eBack-glow{}
 
       &.eBack-metal{
-        @include flame-metal-01(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),v-bind(point));
+        &:not(.eBack-withImage){
+          @include flame-metal-01(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),v-bind(point));
+        }
+        &.eBack-withImage{
+          @include flame-metal-01(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),v-bind(point),v-bind(imageUrl));
+        }
         &.eBack-anime-living{
           @include flame-metal-01-living(var(--c-deco-l),var(--c-deco-d),var(--c-back-l),var(--c-back-d),var(--s-bpm-8));
         }

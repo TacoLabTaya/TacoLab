@@ -15,13 +15,16 @@
         class="bSheet-contents"
       />
     </slot>
-    <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
+    <slot name="background">
+      <StoryblokComponent v-for="blok in blok.background" :key="blok._uid" :blok="blok" class="bSheet-background"/>
+    </slot>
   </div>
 </template>
 
 <script setup>
   const prop = defineProps({ blok: Object });
   const height = computed( () => {
+    if(prop.blok.height == null) return 'auto'
     switch(prop.blok.height.style){
       case 'percent':
         return `${prop.blok.height.value}%`;
@@ -144,7 +147,7 @@
     margin-top: v-bind(childmargin);
   }
 
-  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fColumn{
+  &.mSheet-layout-fRow,&.mSheet-layout-fWrap,&.mSheet-layout-fSwitch,&.mSheet-layout-fColumn{
     display:flex;
     gap:v-bind(gridGap);
   }
@@ -156,6 +159,7 @@
     @include mq('xl'){ >:not(.bSheet-background){width:v-bind(itemWidthXL);} }
   }
   &.mSheet-layout-fRow   { flex-direction:row; }
+  &.mSheet-layout-fSwitch{ @include mq('SHORT'){ flex-direction:column;} @include mq('LARGE'){ flex-direction:row;} }
   &.mSheet-layout-fWrap  { flex-direction:row; flex-wrap:wrap}
   &.mSheet-layout-fColumn{ flex-direction:column; }
 

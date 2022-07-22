@@ -61,7 +61,7 @@ const Fieldtype = {
   },
   data() {
     return {
-      cLayout : ['static','fRow','fWrap','fColumn','gMasonry','gMasonryRow','gTile'],
+      cLayout : ['static','fRow','fSwitch','fWrap','fColumn','gMasonry','gMasonryRow','gTile'],
       cItems  : ['start','end','center','stretch'],
       cContent: ['start','end','center','stretch','space-around','space-between','space-eavenly'],
     }

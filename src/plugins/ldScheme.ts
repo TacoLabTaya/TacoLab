@@ -47,11 +47,11 @@ export default defineNuxtPlugin((nuxtApp) => {
             publisher:publisher,
             datePublished: dPub,
             dateModified: dMod,
-            headline:article.title == null ? 'title' : article.title,
+            headline:article.title == null ? 'title' : article.title.replace('\n', ''),
             image:article.eyecatch == null ? [] : [
-                nuxtApp.$imagePath(article.eyecatch.filename, 900,  900),
-                nuxtApp.$imagePath(article.eyecatch.filename, 1040, 780),
-                nuxtApp.$imagePath(article.eyecatch.filename, 1200, 675),
+                nuxtApp.$imagePathResize(article.eyecatch.filename, 900,  900),
+                nuxtApp.$imagePathResize(article.eyecatch.filename, 1040, 780),
+                nuxtApp.$imagePathResize(article.eyecatch.filename, 1200, 675),
             ],
             mainEntityOfPage: path,
         };
