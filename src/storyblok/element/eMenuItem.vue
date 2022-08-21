@@ -15,7 +15,7 @@
   });
   const onClick = (e) => {
     //console.log(prop.blok.link.cached_url);
-    router.push(prop.blok.link.cached_url);
+    router.push(`/${prop.blok.link.cached_url}`);
   }
 
 </script>
